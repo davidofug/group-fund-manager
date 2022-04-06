@@ -15,7 +15,7 @@ const Login = () => {
 	});
 	return (
 		<div className="md:h-screen flex flex-col justify-center items-center bg-gray-100">
-			<div className="p-12 md:bg-gray-200 md:border border-gray-300 md:rounded-md md:max-w-1/4 items-center">
+			<div className="p-10 md:bg-gray-200 md:border border-gray-300 md:rounded-md w-full md:w-1/4 items-center">
 				<Logo width="64" height="64" title="Group Fund Manager" />
 				<h1 className="font-bold text-center mt-12 mb-4">Login</h1>
 				<Formik

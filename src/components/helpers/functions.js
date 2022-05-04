@@ -1,9 +1,21 @@
-import supabase from './supabase';
-import { useAuth } from '../hooks/useAuth';
-const signOut = (setUser) => {
-    if (supabase.auth.signOut()) {
-        setUser(null);
-    }
-}
+import supabase from "./supabase";
+import { useAuth } from "../hooks/useAuth";
+const signOut = (setUser, navigation) => {
+	if (supabase.auth.signOut()) {
+		setUser(null);
+		navigation.navigate("/", { replace: true });
+	}
+};
 
-export {signOut}
+const toggleDropdown = (event) => {
+	console.log(event.target.id);
+	const { id } = event?.target;
+	let dropdown = document.getElementById("dropdown");
+	if (id === "dropdown-toggle") {
+		dropdown.classList.toggle("hidden");
+	} else {
+		dropdown.classList.add("hidden");
+	}
+};
+
+export { signOut, toggleDropdown };

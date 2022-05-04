@@ -1464,17 +1464,17 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@supabase/functions-js@^1.3.2":
+"@supabase/functions-js@^1.3.3":
   version "1.3.3"
   resolved "https://registry.yarnpkg.com/@supabase/functions-js/-/functions-js-1.3.3.tgz#74803fec71f1e3b734d32a3b116ea494cfcc122d"
   integrity sha512-35vO9niHRtzGe1QSvXKdOfvGPiX2KC44dGpWU6y0/gZCfTIgog/soU9HqABzQC/maVowO3hGLWfez5aN0MKfow==
   dependencies:
     cross-fetch "^3.1.5"
 
-"@supabase/gotrue-js@^1.22.10":
-  version "1.22.12"
-  resolved "https://registry.yarnpkg.com/@supabase/gotrue-js/-/gotrue-js-1.22.12.tgz#78caaef13ef9bdacfcbabceb803ac79de52c6ad3"
-  integrity sha512-/baPkNiumE2B+OLSpvZquDsTqnOTAsG/07GBq5rXU8/e0rSyjljAFf8gnawGPezjlDGTFr2fjRYs0BYMz4LD/A==
+"@supabase/gotrue-js@^1.22.13":
+  version "1.22.13"
+  resolved "https://registry.yarnpkg.com/@supabase/gotrue-js/-/gotrue-js-1.22.13.tgz#4b680b40e34f2ea37f4d227ae0147d60dd6288fa"
+  integrity sha512-Ylus1KWkLRo6Hy9wLzzE4jAr+Fkt8Bi8a1YnX9aWIXPl/R8PxMb4fL928UAEm9fuyFZ1Z1F+BTTK2RM6NLReUQ==
   dependencies:
     cross-fetch "^3.0.6"
 
@@ -1485,31 +1485,31 @@
   dependencies:
     cross-fetch "^3.0.6"
 
-"@supabase/realtime-js@^1.6.2":
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/@supabase/realtime-js/-/realtime-js-1.6.2.tgz#1fec4eabc9b01346006d6098d8cc29ebafa2b70a"
-  integrity sha512-0aK2WoCYvS2lO2BGQwPaxz91oq76lJ+/rSzAMUDFe8mZFj+v4ugifDMUHKpSxJWqW4u4OB9cs3zw11qWlQQCrw==
+"@supabase/realtime-js@^1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@supabase/realtime-js/-/realtime-js-1.7.1.tgz#57c96494a60b40e6bb57f18826a51f1d34f9a2bf"
+  integrity sha512-ovp9UXzi3ibA/AOyL4CXW7hjbrR+ZQoxbJZ8rfZTSMpqYhT8Jl8/sLUozMobIzSV6gsZYuHR3QnzJmemzvBQhg==
   dependencies:
     "@types/phoenix" "^1.5.4"
     websocket "^1.0.34"
 
-"@supabase/storage-js@^1.6.5":
+"@supabase/storage-js@^1.7.0":
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/@supabase/storage-js/-/storage-js-1.7.0.tgz#42536489d8807d3feefe8fff9acff14efc0bad74"
   integrity sha512-f5EBw0wM96hKmnrXhgiqq2Reh9O0NgjKE+jkaKY4jQmfutefqaCAWn+cBzlmHs9h135H2ldaGmhWRFHUSkLt2g==
   dependencies:
     cross-fetch "^3.1.0"
 
-"@supabase/supabase-js@^1.33.3":
-  version "1.33.3"
-  resolved "https://registry.yarnpkg.com/@supabase/supabase-js/-/supabase-js-1.33.3.tgz#f5dadcea6c0d04bb4c93268c1e63ec9eec8b33bf"
-  integrity sha512-wQyCoP03bs21UvfVxRYrFTBmYSGMXjFAKlmP66MACqWUfYLKgJJ3/xVFfOLyyi7M8QTYw8XUK+z4yqQ5p1l88Q==
+"@supabase/supabase-js@^1.35.1":
+  version "1.35.1"
+  resolved "https://registry.yarnpkg.com/@supabase/supabase-js/-/supabase-js-1.35.1.tgz#8a82e6dbc904560bf1eb3cf47fc118ffb6822efc"
+  integrity sha512-w/pdDHxJx60OAB21mU9Zy/dUvWYE3MS7tSXzAITnpXM903TxbKSpsB+ZQcGy0W7FfP1E7CXOnPeprmxfUdnY2A==
   dependencies:
-    "@supabase/functions-js" "^1.3.2"
-    "@supabase/gotrue-js" "^1.22.10"
+    "@supabase/functions-js" "^1.3.3"
+    "@supabase/gotrue-js" "^1.22.13"
     "@supabase/postgrest-js" "^0.37.2"
-    "@supabase/realtime-js" "^1.6.2"
-    "@supabase/storage-js" "^1.6.5"
+    "@supabase/realtime-js" "^1.7.1"
+    "@supabase/storage-js" "^1.7.0"
 
 "@surma/rollup-plugin-off-main-thread@^2.2.3":
   version "2.2.3"
@@ -3800,9 +3800,9 @@ es-to-primitive@^1.2.1:
     is-symbol "^1.0.2"
 
 es5-ext@^0.10.35, es5-ext@^0.10.50:
-  version "0.10.59"
-  resolved "https://registry.yarnpkg.com/es5-ext/-/es5-ext-0.10.59.tgz#71038939730eb6f4f165f1421308fb60be363bc6"
-  integrity sha512-cOgyhW0tIJyQY1Kfw6Kr0viu9ZlUctVchRMZ7R0HiH3dxTSp5zJDLecwxUqPUrGKMsgBI1wd1FL+d9Jxfi4cLw==
+  version "0.10.61"
+  resolved "https://registry.yarnpkg.com/es5-ext/-/es5-ext-0.10.61.tgz#311de37949ef86b6b0dcea894d1ffedb909d3269"
+  integrity sha512-yFhIqQAzu2Ca2I4SE2Au3rxVfmohU9Y7wqGR+s7+H7krk26NXhIRAZDgqd6xqjCEFUomDEA3/Bo/7fKmIkW1kA==
   dependencies:
     es6-iterator "^2.0.3"
     es6-symbol "^3.1.3"
@@ -7209,6 +7209,11 @@ react-fast-compare@^2.0.1:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-2.0.4.tgz#e84b4d455b0fec113e0402c329352715196f81f9"
   integrity sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==
+
+react-icons@^4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.3.1.tgz#2fa92aebbbc71f43d2db2ed1aed07361124e91ca"
+  integrity sha512-cB10MXLTs3gVuXimblAdI71jrJx8njrJZmNMEMC+sQu5B/BIOmlsAjskdqpn81y8UBVEGuHODd7/ci5DvoSzTQ==
 
 react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"

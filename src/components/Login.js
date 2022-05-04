@@ -1,14 +1,22 @@
 import React from "react";
 import Logo from "./shared/Logo";
-import {Link} from 'react-router-dom'
+import { useLocation, useNavigate, Link, Navigate } from "react-router-dom";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import { supabase } from "../helpers/supabaseClient";
+import { useAuth } from "../components/hooks/useAuth";
 
 const Login = () => {
+	const { user, setUser } = useAuth();
+	const [errorMsg, setErrorMsg] = React.useState(null);
+
 	React.useEffect(() => {
 		document.title = "GFM - Login";
 	}, []);
+
+	const location = useLocation();
+	const navigate = useNavigate();
+	const from = location.state?.from?.pathname || "/dashboard";
 
 	const initialValues = { email: "", password: "" };
 	const loginSchema = Yup.object().shape({
@@ -23,9 +31,13 @@ const Login = () => {
 		});
 
         console.log(user);
+		return {user, error};
 	};
 
-	return (
+  return user ? (
+    <Navigate to={from} replace />
+  ) :
+ (
 		<div className="md:h-screen flex flex-col justify-center items-center bg-gray-100">
 			<div className="p-10 md:bg-gray-200 md:border border-gray-300 md:rounded-md w-full md:w-1/4 items-center">
 				<Logo width="64" height="64" title="Group Fund Manager" />
@@ -33,7 +45,16 @@ const Login = () => {
 				<Formik
 					initialValues={initialValues}
 					validationSchema={loginSchema}
-                    onSubmit={signInWithEmail}>
+                    onSubmit={(values) => {
+						const {user, error} = signInWithEmail(values)
+						if(error) {
+							setErrorMsg(error.message)
+						} else {
+
+							setUser(user)
+							navigate(from, {replace: true})
+						}
+					}}>
 					{({ errors, touched }) => (
 						<Form className="flex flex-col">
 							<Field

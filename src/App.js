@@ -1,6 +1,12 @@
-
+import MyRouter from "./components/MyRouter";
+import { AuthProvider } from './components/helpers/AuthProvider'
 function App() {
-  return <h1> Group Manager </h1>;
+  return (
+    <AuthProvider>
+      <MyRouter />
+    </AuthProvider>
+  );
 }
 
 export default App;
+

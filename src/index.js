@@ -2,7 +2,7 @@ import React from "react";
 import * as ReactDOMClient from 'react-dom/client';
 import "./index.css";
 import App from "./App";
-import MyRouter from "./components/MyRouter";
+// import MyRouter from "./components/MyRouter";
 import AddSuperAdmin from "./components/AddSuperAdmin";
 import reportWebVitals from "./reportWebVitals";
 
@@ -11,7 +11,7 @@ const root = ReactDOMClient.createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <MyRouter />
+    <App />
   </React.StrictMode>
   );
 

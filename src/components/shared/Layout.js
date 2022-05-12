@@ -6,12 +6,12 @@ import PrivateNav from "./PrivateNav";
 import supabase from "../helpers/supabase";
 import { toggleDropdown } from "../helpers/functions";
 import profilephoto from "../../assets/images/member.jpg";
-const Layout = ({ user }) => {
-	/* 	const { user, setUser } = useAuth();
+const Layout = () => {
+	const { user, setUser } = useAuth();
 	React.useEffect(() => {
 		const user = supabase.auth.user();
 		setUser(user);
-	}, []); */
+	});
 
 	if (user)
 		return (
@@ -66,6 +66,7 @@ const Layout = ({ user }) => {
 				</main>
 			</section>
 		);
+
 	return (
 		<section className="bg-gray-50 light:text-gray-300 dark:bg-black dark:text-gray-300">
 			<Outlet />

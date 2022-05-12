@@ -1,5 +1,5 @@
 import supabase from "./supabase";
-import { useAuth } from "../hooks/useAuth";
+
 const signOut = (setUser, navigation) => {
 	if (supabase.auth.signOut()) {
 		setUser(null);

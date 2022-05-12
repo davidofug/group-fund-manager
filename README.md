@@ -1,3 +1,24 @@
+![Logo](/Users/moureencaroline/Documents/group-fund-manager/public/logo192.png)
+
+
+
+For more information: [group-fund-manager.app](https://group-fund-manager.vercel.app)
+
+[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
+![build succeeded](https://img.shields.io/badge/build-succeeded-brightgreen.svg)
+![Test passing](https://img.shields.io/badge/Tests-passing-brightgreen.svg)
+
+
+# Group Fund Manager
+
+A collection of people willing to oversee mutual funds or pensions, manage analysts, conduct research, and make important investment decisions.
+
+## App Screenshots
+
+![GFM Login App Screenshot](/Users/moureencaroline/Documents/group-fund-manager/public/GFM_Login.png)
+![GFM Reset App Screenshot](/Users/moureencaroline/Documents/group-fund-manager/public/GFM_Reset.png)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

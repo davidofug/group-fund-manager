@@ -30,14 +30,19 @@ const Login = () => {
 			password: values.password,
 		});
 
-        console.log(user);
-		return {user, error};
+		console.log(user);
+		if (error) {
+			setErrorMsg(error.message);
+			return;
+		}
+
+		setUser(user);
+		navigate(from, { replace: true });
 	};
 
-  return user ? (
-    <Navigate to={from} replace />
-  ) :
- (
+	return user ? (
+		<Navigate to={from} replace />
+	) : (
 		<div className="md:h-screen flex flex-col justify-center items-center bg-gray-100">
 			<div className="p-10 md:bg-gray-200 md:border border-gray-300 md:rounded-md w-full md:w-1/4 items-center">
 				<Logo width="64" height="64" title="Group Fund Manager" />
@@ -45,16 +50,7 @@ const Login = () => {
 				<Formik
 					initialValues={initialValues}
 					validationSchema={loginSchema}
-                    onSubmit={(values) => {
-						const {user, error} = signInWithEmail(values)
-						if(error) {
-							setErrorMsg(error.message)
-						} else {
-
-							setUser(user)
-							navigate(from, {replace: true})
-						}
-					}}>
+					onSubmit={(values) => signInWithEmail(values)}>
 					{({ errors, touched }) => (
 						<Form className="flex flex-col">
 							<Field
@@ -96,7 +92,13 @@ const Login = () => {
 						</Form>
 					)}
 				</Formik>
-				<p className="text-center"><Link to="/forgot-password" className="font-semibold hover:text-blue-700 text-center">Forgot Password?</Link></p>
+				<p className="text-center">
+					<Link
+						to="/forgot-password"
+						className="font-semibold hover:text-blue-700 text-center">
+						Forgot Password?
+					</Link>
+				</p>
 			</div>
 		</div>
 	);

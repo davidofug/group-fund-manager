@@ -22,7 +22,9 @@ const MyRouter = () => {
 						path="/forgot-password"
 						element={<ForgotPassword />}
 					/>
-					<Route path="/dashboard" element={<Dashboard />} />
+					<Route path="/dashboard" element={<PrivateRoute />}>
+						<Route element={<Dashboard />} />
+					</Route>
 					<Route path="/add-member" element={<AddMember />} />
 					<Route path="/add-group" element={<AddGroup />} />
 					<Route path="/transactions" element={<PrivateRoute />}>

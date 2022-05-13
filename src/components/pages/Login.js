@@ -11,24 +11,24 @@ const Login = () => {
 	const navigate = useNavigate();
 	const from = location.state?.from?.pathname || "/dashboard";
 	const { user, setUser } = useAuth();
-	console.log(user);
-	const [errorMsg, setErrorMsg] = React.useState(null);
 
-	React.useEffect(async () => {
+	const [errorMsg, setErrorMsg] = React.useState(null);
+	const [loading, setLoading] = React.useState(false);
+	React.useEffect(() => {
 		document.title = "GFM - Login";
-		await autoLogin();
+		autoLogin();
 	}, []);
 
-	const autoLogin = async () => {
-		console.log("autoLogin");
-		const { data: user, error } = supabase.auth.user();
-		console.log(user);
+	const autoLogin = () => {
+		// console.log("autoLogin");
+		const user = supabase.auth.user();
+		// console.log(user);
 
 		if (user) {
 			setUser(user);
-			navigate("/dashboard", { replace: true });
 		}
 	};
+
 	const initialValues = { email: "", password: "" };
 	const loginSchema = Yup.object().shape({
 		email: Yup.string().required("Email is required!"),
@@ -51,10 +51,9 @@ const Login = () => {
 		}
 	};
 
-	// return user ? (
-	// 	<Navigate to={from} replace />
-	// ) : (
-	return (
+	return user ? (
+		<Navigate to={from} replace />
+	) : (
 		<div className="md:h-screen flex flex-col justify-center items-center bg-gray-100">
 			<div className="p-10 md:bg-gray-200 md:border border-gray-300 md:rounded-md w-full md:w-1/4 items-center">
 				<Logo width="64" height="64" title="Group Fund Manager" />
@@ -119,7 +118,6 @@ const Login = () => {
 			</div>
 		</div>
 	);
-	/* 	); */
 };
 
 export default Login;

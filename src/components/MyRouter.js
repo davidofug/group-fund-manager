@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./Login";
 import PrivateRoute from "./helpers/PrivateRoute";
 import ForgotPassword from "./ForgotPassword";
+import NotAuthorized from "./NotAuthorized";
 import Dashboard from "./Dashboard";
 import Transactions from "./Transactions/Index";
 import AddMember from "./AddMember";
@@ -22,8 +23,11 @@ const MyRouter = () => {
 						path="/forgot-password"
 						element={<ForgotPassword />}
 					/>
+					<Route path="/not-authorized" element={<PrivateRoute />}>
+						<Route element={<NotAuthorized />} />
+					</Route>
 					<Route path="/dashboard" element={<PrivateRoute />}>
-						<Route element={<Dashboard />} />
+						<Route index element={<Dashboard />} />
 					</Route>
 					<Route path="/add-member" element={<AddMember />} />
 					<Route path="/add-group" element={<AddGroup />} />

@@ -1,15 +1,13 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { FiChevronDown } from "react-icons/fi";
-import PrivateNav from "./PrivateNav";
+import PrivateNav from "../shared/PrivateNav";
 import supabase from "../helpers/supabase";
-import { signOut, toggleDropdown } from "../helpers/functions";
+import { toggleDropdown } from "../helpers/functions";
 import profilephoto from "../../assets/images/member.jpg";
-const AuthLayout = () => {
-	const { user, setUser } = useAuth();
-	const navigation = useNavigate();
+
+const Auth = ({ children }) => {
 	return (
 		<section className="grid grid-cols-12" onClick={toggleDropdown}>
 			<PrivateNav />
@@ -51,7 +49,6 @@ const AuthLayout = () => {
 							<div className="py-1">
 								<a
 									href="#"
-									onClick={() => signOut(setUser, navigation)}
 									className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
 									Sign out
 								</a>
@@ -59,15 +56,10 @@ const AuthLayout = () => {
 						</div>
 					</section>
 				</section>
-				<Outlet />
+				{children}
 			</main>
 		</section>
 	);
-
-	/* 	return (
-		<section className="bg-gray-50 light:text-gray-300 dark:bg-black dark:text-gray-300">
-			<Outlet />
-		</section>
-	); */
 };
-export default AuthLayout;
+
+export default Auth;

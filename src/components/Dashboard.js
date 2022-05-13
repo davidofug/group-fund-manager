@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import AuthWrapper from "./wrappers/Auth";
 
 const Dashboard = () => {
-  return (
-    <div>Dashboard</div>
-  )
-}
+	return (
+		<AuthWrapper>
+			<h1>Dashboard</h1>
+		</AuthWrapper>
+	);
+};
 
-export default Dashboard
+export default Dashboard;

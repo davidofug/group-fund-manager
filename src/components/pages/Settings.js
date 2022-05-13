@@ -1,9 +1,11 @@
-import React from 'react'
-
+import React from "react";
+import AuthWrapper from "../wrappers/Auth";
 const Settings = () => {
-  return (
-    <div>Settings</div>
-  )
-}
+	return (
+		<AuthWrapper>
+			<h1>Settings</h1>
+		</AuthWrapper>
+	);
+};
 
-export default Settings
+export default Settings;

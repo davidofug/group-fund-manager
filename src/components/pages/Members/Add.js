@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
-import { supabase } from "../helpers/supabaseClient";
+import { supabase } from "../../../helpers/supabaseClient";
 
 const AddMember = () => {
 	React.useEffect(() => {
@@ -90,45 +90,60 @@ const AddMember = () => {
 									{errors.last_name}
 								</p>
 							) : null}
-                            <label>Gender</label>
-							<label><Field
-								type="radio"
-								name="gender"
-                                value="Female"
-                                id="female"
-							/> Female </label>
-							<label><Field
-								type="radio"
-								name="gender"
-                                value="Male"
-                                id="male"
-							/> Male </label>
+							<label>Gender</label>
+							<label>
+								<Field
+									type="radio"
+									name="gender"
+									value="Female"
+									id="female"
+								/>{" "}
+								Female{" "}
+							</label>
+							<label>
+								<Field
+									type="radio"
+									name="gender"
+									value="Male"
+									id="male"
+								/>{" "}
+								Male{" "}
+							</label>
 							{errors.gender && touched.gender ? (
 								<p className="px-4 text-red-500">
 									{errors.gender}
 								</p>
 							) : null}
-                            <label>Groups</label>
-							<label><Field
-								type="checkbox"
-								name="groups"
-                                value="Ablestate Providence"
-							/> Ablestate Providence</label>
-							<label><Field
-								type="checkbox"
-								name="groups"
-                                value="RPM Wealthy Ladies"
-							/> RPM Wealthy Ladies </label>
+							<label>Groups</label>
+							<label>
+								<Field
+									type="checkbox"
+									name="groups"
+									value="Ablestate Providence"
+								/>{" "}
+								Ablestate Providence
+							</label>
+							<label>
+								<Field
+									type="checkbox"
+									name="groups"
+									value="RPM Wealthy Ladies"
+								/>{" "}
+								RPM Wealthy Ladies{" "}
+							</label>
 							{errors.groups && touched.groups ? (
 								<p className="px-4 text-red-500">
 									{errors.groups}
 								</p>
 							) : null}
-							<label><Field
-								type="checkbox"
-								name="groups"
-                                value="Brotherhood finance"
-							/> Brotherhood finance </label>
+							<label>
+								<Field
+									type="checkbox"
+									name="groups"
+									value="Brotherhood finance"
+								/>{" "}
+								Brotherhood finance{" "}
+							</label>
 
 							{errors.groups && touched.groups ? (
 								<p className="px-4 text-red-500">
@@ -166,7 +181,7 @@ const AddMember = () => {
 									{errors.confirm_password}
 								</p>
 							) : null}
-                            <label htmlFor="role">Role</label>
+							<label htmlFor="role">Role</label>
 							<Field
 								as="select"
 								name="role"
@@ -174,28 +189,22 @@ const AddMember = () => {
 									errors.role && touched.role
 										? "border-red-500"
 										: "border-gray-500"
-								} bg-gray-300 focus:bg-white focus:text-blue-700 font-semibold`}
-							>
-                                <option value="-">- Select Role -</option>
-                                <option value="1">Member</option>
-                                <option value="2">Admin</option>
-                                <option value="3">Super Admin</option>
-                                <option value="3">Auditor</option>
-                            </Field>
-							{errors.role &&
-							touched.role ? (
+								} bg-gray-300 focus:bg-white focus:text-blue-700 font-semibold`}>
+								<option value="-">- Select Role -</option>
+								<option value="1">Member</option>
+								<option value="2">Admin</option>
+								<option value="3">Super Admin</option>
+								<option value="3">Auditor</option>
+							</Field>
+							{errors.role && touched.role ? (
 								<p className="px-4 text-red-500">
 									{errors.role}
 								</p>
 							) : null}
-                            <label>
-                                Avatar/Photo
-                                <Field
-								type="file"
-								name="avatar"
-
-							/>
-                            </label>
+							<label>
+								Avatar/Photo
+								<Field type="file" name="avatar" />
+							</label>
 							<button
 								className="bg-blue-700 rounded-full text-white p-2 my-3  hover:bg-gray-600 font-semibold"
 								type="submit">

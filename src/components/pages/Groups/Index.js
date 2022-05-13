@@ -1,10 +1,9 @@
 import React from "react";
-import AuthWrapper from "../wrappers/Auth";
-
+import AuthWrapper from "../../wrappers/Auth";
 const Index = () => {
 	return (
 		<AuthWrapper>
-			<h1>Index</h1>
+			<h1>Groups</h1>
 		</AuthWrapper>
 	);
 };

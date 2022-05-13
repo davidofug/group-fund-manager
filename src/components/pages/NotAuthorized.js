@@ -1,5 +1,5 @@
 import React from "react";
-import AuthWrapper from "./wrappers/Auth";
+import AuthWrapper from "../wrappers/Auth";
 
 const NotAuthorized = () => {
 	return (

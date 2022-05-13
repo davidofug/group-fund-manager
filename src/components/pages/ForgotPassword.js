@@ -1,9 +1,9 @@
 import React from "react";
-import Logo from "./shared/Logo";
-import {Link} from 'react-router-dom'
+import Logo from "../shared/Logo";
+import { Link } from "react-router-dom";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
-import { supabase } from "../helpers/supabaseClient";
+import { supabase } from "../../helpers/supabaseClient";
 
 const ForgotPassword = () => {
 	React.useEffect(() => {
@@ -20,18 +20,21 @@ const ForgotPassword = () => {
 			email: values.email,
 		});
 
-        console.log(user);
+		console.log(user);
 	};
 
 	return (
 		<div className="md:h-screen flex flex-col justify-center items-center bg-gray-100">
 			<div className="p-10 md:bg-gray-200 md:border border-gray-300 md:rounded-md w-full md:w-1/4 items-center">
 				<Logo width="64" height="64" title="Group Fund Manager" />
-				<p className="pt-8 pb-2">Enter the E-mail address associated with the account then Reset Password</p>
-                <Formik
+				<p className="pt-8 pb-2">
+					Enter the E-mail address associated with the account then
+					Reset Password
+				</p>
+				<Formik
 					initialValues={initialValues}
 					validationSchema={forgotPasswordSchema}
-                    onSubmit={signInWithEmail}>
+					onSubmit={signInWithEmail}>
 					{({ errors, touched }) => (
 						<Form className="flex flex-col">
 							<Field
@@ -57,7 +60,12 @@ const ForgotPassword = () => {
 						</Form>
 					)}
 				</Formik>
-				<p className="text-center font-semibold">Remember Password? <Link to="/" className="text-center hover:text-blue-700 ">Login</Link></p>
+				<p className="text-center font-semibold">
+					Remember Password?{" "}
+					<Link to="/" className="text-center hover:text-blue-700 ">
+						Login
+					</Link>
+				</p>
 			</div>
 		</div>
 	);

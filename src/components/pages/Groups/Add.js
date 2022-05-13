@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
-import { supabase } from "../helpers/supabaseClient";
+import { supabase } from "../../../helpers/supabaseClient";
 
 const AddGroup = () => {
 	React.useEffect(() => {
@@ -22,7 +22,7 @@ const AddGroup = () => {
 		supabase.setTable("users");
 		supabase.create({
 			name: "",
-            avatar:"",
+			avatar: "",
 		});
 	};
 
@@ -50,14 +50,10 @@ const AddGroup = () => {
 									{errors.name}
 								</p>
 							) : null}
-                            <label>
-                                Group Avatar
-                                <Field
-								type="file"
-								name="avatar"
-
-							/>
-                            </label>
+							<label>
+								Group Avatar
+								<Field type="file" name="avatar" />
+							</label>
 							<button
 								className="bg-blue-700 rounded-full text-white p-2 my-3  hover:bg-gray-600 font-semibold"
 								type="submit">

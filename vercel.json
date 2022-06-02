@@ -1,0 +1,12 @@
+{
+	"routes": [
+		{
+			"src": "/users",
+			"dest": "/api/users"
+		},
+		{
+			"src": "/api/users",
+			"methods": ["POST", "DELETE", "PATCH", "PUT"]
+		}
+	]
+}

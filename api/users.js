@@ -1,7 +1,7 @@
 const { createClient } = require("@supabase/supabase-js");
 const supabase = createClient(
 	process.env.REACT_APP_SUPABASE_URL,
-	process.env.REACT_APP_SUPABASE_SERVICE_TOKEN
+	process.env.SUPABASE_SERVICE_TOKEN
 );
 
 module.exports = async (req, res) => {
@@ -15,23 +15,31 @@ module.exports = async (req, res) => {
 			last_name,
 			gender,
 			role,
-			addedBy,
-			company,
-			company_name,
-		} = req.body;
+			created_by,
+			group,
+			avatar_url,
+		} = body;
+		const signWith =
+			email?.indexOf("@") >= 0 && email?.indexOf(".") >= 0
+				? { email: email, email_confirm: true }
+				: { phone: email, phone_confirm: true };
 		const { data: user, error } = await supabase.auth.api.createUser({
-			email,
-			email_confirm: true,
+			...signWith,
 			password,
 			user_metadata: {
 				role,
-				addedBy: { id: addedBy.id, email: addedBy.email },
-				company: { id: company, name: company_name },
-				name: {
-					first_name,
-					last_name,
-				},
+				created_by,
+				groups: [
+					{
+						...group,
+						roles: [role],
+						joinned: new Date().toLocaleTimeString(),
+					},
+				],
+				first_name,
+				last_name,
 				gender,
+				avatar_url,
 			},
 		});
 

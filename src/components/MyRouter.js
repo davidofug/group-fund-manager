@@ -12,6 +12,7 @@ import Transactions from "./pages/Transactions/Index";
 import AddTransaction from "./pages/Transactions/Add";
 import Members from "./pages/Members/Index";
 import AddMember from "./pages/Members/Add";
+import Profile from "./pages/Members/Profile";
 import Settings from "./pages/Settings";
 
 const MyRouter = () => {
@@ -31,6 +32,9 @@ const MyRouter = () => {
 					<Route path="/dashboard" element={<PrivateRoute />}>
 						<Route index element={<Dashboard />} />
 					</Route>
+					<Route path="/profile" element={<PrivateRoute />}>
+						<Route index element={<Profile />} />
+					</Route>
 					<Route path="/transactions" element={<PrivateRoute />}>
 						<Route index element={<Transactions />} />
 						<Route path="add" element={<AddTransaction />} />
@@ -43,7 +47,9 @@ const MyRouter = () => {
 						<Route index element={<Members />} />
 						<Route path="add" element={<AddMember />} />
 					</Route>
-					<Route path="/settings" element={<Settings />} />
+					<Route path="/settings" element={<PrivateRoute />}>
+						<Route index element={<Settings />} />
+					</Route>
 					<Route path="*" element={<Missing />} />
 				</Route>
 			</Routes>

@@ -1,9 +1,10 @@
 import supabase from "./supabase";
 
-const signOut = (setUser, navigation) => {
-	if (supabase.auth.signOut()) {
+const signOut = async (setUser) => {
+	const { error } = await supabase.auth.signOut();
+	console.log(error);
+	if (!error) {
 		setUser(null);
-		navigation.navigate("/", { replace: true });
 	}
 };
 
@@ -18,4 +19,19 @@ const toggleDropdown = (event) => {
 	}
 };
 
-export { signOut, toggleDropdown };
+const getBase64 = (file) => {
+	return new Promise((resolve) => {
+		let baseURL = "";
+		let reader = new FileReader();
+		reader.readAsDataURL(file);
+		reader.onload = () => {
+			baseURL = reader.result;
+			resolve(baseURL);
+		};
+		reader.onerror = (error) => {
+			console.log("Error: ", error);
+		};
+	});
+};
+
+export { signOut, toggleDropdown, getBase64 };

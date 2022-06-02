@@ -105,7 +105,7 @@ const AddMember = () => {
 		const [initialGroup] = groups.filter(
 			(group) => group.id == values.group
 		);
-		let response = fetch("api/users", {
+		let response = fetch("/api/users", {
 			method: "POST",
 			body: JSON.stringify({
 				...values,

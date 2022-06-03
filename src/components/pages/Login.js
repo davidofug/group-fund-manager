@@ -5,7 +5,7 @@ import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import { supabase } from "../../helpers/supabaseClient";
 import { useAuth } from "../../components/hooks/useAuth";
-
+import Modal from "../shared/Modal";
 const Login = () => {
 	const location = useLocation();
 	const navigate = useNavigate();
@@ -16,8 +16,23 @@ const Login = () => {
 	const [loading, setLoading] = React.useState(false);
 	React.useEffect(() => {
 		document.title = "GFM - Login";
-		// autoLogin();
+		autoLogin();
+		return () => {
+			return false;
+		};
 	}, []);
+
+	function autoLogin() {
+		setLoading(true);
+
+		const user = supabase.auth.user();
+		if (user) {
+			setLoading(false);
+			setUser(user);
+		} else {
+			setLoading(false);
+		}
+	}
 
 	const initialValues = { email: "", password: "" };
 	const loginSchema = Yup.object().shape({
@@ -26,6 +41,7 @@ const Login = () => {
 	});
 
 	const signIn = async (values) => {
+		setLoading(true);
 		const { email, password } = values;
 		const signInWith =
 			email.toLowerCase().indexOf("@") >= 0 &&
@@ -36,16 +52,22 @@ const Login = () => {
 			...signInWith,
 			password,
 		});
-
-		// console.log(user);
 		if (error) {
 			setErrorMsg(error.message);
 			return;
 		} else {
+			setLoading(false);
 			setUser(user);
 			navigate(from, { replace: true });
 		}
 	};
+
+	if (loading)
+		return (
+			<Modal status={loading} setStatus={setLoading}>
+				<h1>Loading</h1>
+			</Modal>
+		);
 
 	return user ? (
 		<Navigate to={from} replace />

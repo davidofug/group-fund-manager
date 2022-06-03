@@ -1,15 +1,14 @@
 import React from "react";
-import { signOut } from "../helpers/functions";
-import { FiActivity, FiLogOut, FiSettings } from "react-icons/fi";
+import { FiActivity, FiSettings } from "react-icons/fi";
 import { FaPiggyBank, FaLayerGroup, FaUserPlus } from "react-icons/fa";
-import { useAuth } from "../hooks/useAuth";
-import { Link, useNavigate } from "react-router-dom";
-import PrivateLink from "./PrivateLink";
+// import { useAuth } from "../hooks/useAuth";
+import { Link } from "react-router-dom";
+// import PrivateLink from "./PrivateLink";
 import Logo from "./Logo";
 
 function PrivateNav() {
-	const navigate = useNavigate();
-	const { user, setUser } = useAuth();
+	// const navigate = useNavigate();
+	// const { user, setUser } = useAuth();
 
 	return (
 		<aside

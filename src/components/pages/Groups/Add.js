@@ -8,6 +8,9 @@ import { supabase } from "../../../helpers/supabaseClient";
 const AddGroup = () => {
 	React.useEffect(() => {
 		document.title = "GFM - Add Group";
+		return () => {
+			return false;
+		};
 	}, []);
 
 	const [errorMsg, setErrorMsg] = React.useState({});
@@ -17,7 +20,8 @@ const AddGroup = () => {
 	const selectLogo = () => {
 		setErrorMsg({});
 		console.log("Logo select clicked");
-		logoElement.current.click();
+		// logoElement.current.click();
+		document.getElementById("logo-element").click();
 		// console.log(logoElement);
 	};
 
@@ -109,7 +113,8 @@ const AddGroup = () => {
 						<Form>
 							{!file && (
 								<div
-									onClick={selectLogo}
+									// onClick={() => selectLogo()}
+									id="selector-btn"
 									className="w-24 h-24 bg-black/60 bg-contain cursor-pointer border border-gray-400 rounded-md text-white text-center grid grid-cols-1 justify-content items-center"
 									style={{
 										backgroundImage: `url(${Camera})`,
@@ -128,6 +133,7 @@ const AddGroup = () => {
 								accept="image/*"
 								name="avatar"
 								hidden
+								id="logo-element"
 								ref={logoElement}
 								onChange={(event) => {
 									const { file, error } =

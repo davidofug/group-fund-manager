@@ -26,28 +26,42 @@ const MyRouter = () => {
 						path="/forgot-password"
 						element={<ForgotPassword />}
 					/>
-					<Route path="/not-authorized" element={<PrivateRoute />}>
+					<Route
+						path="/not-authorized"
+						element={<PrivateRoute allowedRoles={[1, 2, 3, 4]} />}>
 						<Route element={<NotAuthorized />} />
 					</Route>
-					<Route path="/dashboard" element={<PrivateRoute />}>
+					<Route
+						path="/dashboard"
+						element={<PrivateRoute allowedRoles={[1, 2, 3, 4]} />}>
 						<Route index element={<Dashboard />} />
 					</Route>
-					<Route path="/profile" element={<PrivateRoute />}>
+					<Route
+						path="/profile"
+						element={<PrivateRoute allowedRoles={[1, 2, 3, 4]} />}>
 						<Route index element={<Profile />} />
 					</Route>
-					<Route path="/transactions" element={<PrivateRoute />}>
+					<Route
+						path="/transactions"
+						element={<PrivateRoute allowedRoles={[1, 2, 3, 4]} />}>
 						<Route index element={<Transactions />} />
 						<Route path="add" element={<AddTransaction />} />
 					</Route>
-					<Route path="/groups" element={<PrivateRoute />}>
+					<Route
+						path="/groups"
+						element={<PrivateRoute allowedRoles={[1, 2, 3, 4]} />}>
 						<Route index element={<Groups />} />
 						<Route path="add" element={<AddGroup />} />
 					</Route>
-					<Route path="/members" element={<PrivateRoute />}>
+					<Route
+						path="/members"
+						element={<PrivateRoute allowedRoles={[1, 2, 3, 4]} />}>
 						<Route index element={<Members />} />
 						<Route path="add" element={<AddMember />} />
 					</Route>
-					<Route path="/settings" element={<PrivateRoute />}>
+					<Route
+						path="/settings"
+						element={<PrivateRoute allowedRoles={[1, 2, 3, 4]} />}>
 						<Route index element={<Settings />} />
 					</Route>
 					<Route path="*" element={<Missing />} />

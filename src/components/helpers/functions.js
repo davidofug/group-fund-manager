@@ -1,11 +1,9 @@
 import supabase from "./supabase";
-
-const signOut = async (setUser) => {
+const signOut = async () => {
 	const { error } = await supabase.auth.signOut();
 	console.log(error);
-	if (!error) {
-		setUser(null);
-	}
+
+	return error ? error : true;
 };
 
 const toggleDropdown = (event) => {

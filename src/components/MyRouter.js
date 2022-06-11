@@ -4,7 +4,6 @@ import Missing from "./pages/Missing";
 import Layout from "./shared/Layout";
 import PrivateRoute from "./helpers/PrivateRoute";
 import ForgotPassword from "./pages/ForgotPassword";
-import NotAuthorized from "./pages/NotAuthorized";
 import Dashboard from "./pages/Dashboard";
 import Groups from "./pages/Groups/Index";
 import AddGroup from "./pages/Groups/Add";
@@ -26,11 +25,6 @@ const MyRouter = () => {
 						path="/forgot-password"
 						element={<ForgotPassword />}
 					/>
-					<Route
-						path="/not-authorized"
-						element={<PrivateRoute allowedRoles={[1, 2, 3, 4]} />}>
-						<Route element={<NotAuthorized />} />
-					</Route>
 					<Route
 						path="/dashboard"
 						element={<PrivateRoute allowedRoles={[1, 2, 3, 4]} />}>

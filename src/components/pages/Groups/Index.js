@@ -1,9 +1,15 @@
 import React from "react";
+import { Helmet } from "react-helmet";
+import { IoAddCircle } from "react-icons/io5";
+import { BsFillImageFill } from "react-icons/bs";
+import { TiEdit } from "react-icons/ti";
+import { RiDeleteBin2Fill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import AuthWrapper from "../../wrappers/Auth";
 import EditGroup from "./Edit";
 import { supabase } from "../../../helpers/supabaseClient";
 import Modal from "../../shared/Modal";
+import NewGroup from "./New";
 const Index = () => {
 	const [error, setError] = React.useState({});
 	const [editing, setEditing] = React.useState(false);
@@ -88,6 +94,9 @@ const Index = () => {
 
 	return (
 		<AuthWrapper>
+			<Helmet>
+				<title>GFM - Groups</title>
+			</Helmet>
 			{groupToEdit && (
 				<Modal
 					title={`You're about to edit ${groupToEdit.name}`}
@@ -96,120 +105,150 @@ const Index = () => {
 					<EditGroup group={groupToEdit} setStatus={setEditing} />
 				</Modal>
 			)}
-			<article className="bg-white border border-gray-300 rounded-md p-4">
-				<h1>
-					Groups{" "}
-					<Link
-						to="/groups/add"
-						className="bg-blue-500 rounded-full px-3 py-1 text-white hover:bg-white hover:text-blue-500 hover:border hover:border-blue-500">
-						Add
-					</Link>
-				</h1>
-				{loading ? (
-					<div className="min-h-full w-full flex flex-col justify-center items-center">
-						Loading
-						<br />
-						Please wait
-					</div>
-				) : (
-					<>
-						{groups.length > 0 ? (
-							<table className="border-collapse border border-slate-300 w-full mt-3">
-								<thead>
-									<tr>
-										<th className="border border-slate-300 p-2"></th>
-										<th className="border border-slate-300  p-2"></th>
-										<th className="border border-slate-300 p-2">
-											Name
-										</th>
-										<th className="border border-slate-300 p-2">
-											Purpose
-										</th>
-										<th className="border border-slate-300 p-2">
-											Members
-										</th>
-										<th className="border border-slate-300 p-2 max-w-min">
-											Actions
-										</th>
-									</tr>
-								</thead>
-								<tbody>
-									{groups?.map((group) => (
-										<tr key={group.id}>
-											<td className="border border-slate-300 w-6 text-center">
-												<input
-													type="checkbox"
-													name="group"
-													id="group"
-													value={group.id}
-												/>
-											</td>
-											<td className="border border-slate-300 p-2 w-20">
-												{group?.avatar_url && (
-													<img
-														src={group.avatar_url}
-														className="w-16 h-16 border border-slate-300 rounded-full"
-													/>
-												)}
-											</td>
-											<td className="border border-slate-300 p-2">
-												{group?.name}
-											</td>
-											<td className="border border-slate-300 p-2">
-												{group?.purpose?.join(", ")}
-											</td>
-											<td className="border border-slate-300 p-2">
-												{group?.members?.length}
-											</td>
-											<td className="border border-slate-300 p-2 max-w-min">
-												<Link
-													to={`${group?.id}/edit`}
-													onClick={(event) => {
-														event.preventDefault();
-														// console.log(editing);
-														editGroup(group.id);
-													}}>
-													Edit
-												</Link>
-												|
-												<Link
-													className="text-red-500"
-													to="#"
-													onClick={(event) => {
-														event.preventDefault();
-														deleteGroup(group?.id);
-													}}>
-													Delete
-												</Link>
-											</td>
+			<main className="grid gap-2 grid-cols-12">
+				<aside className="col-span-3">
+					<NewGroup setGroups={setGroups} groups={groups} />
+				</aside>
+				<article className="col-span-9 bg-white border border-gray-300 rounded-md p-4">
+					<h1>
+						Groups{" "}
+						{/* 						<Link
+							to="/groups/add"
+							className="bg-blue-500 rounded-full px-3 py-1 text-white hover:bg-white hover:text-blue-500 hover:border hover:border-blue-500">
+							Add
+						</Link> */}
+					</h1>
+					{loading ? (
+						<div className="min-h-full w-full flex flex-col justify-center items-center">
+							Loading
+							<br />
+							Please wait
+						</div>
+					) : (
+						<>
+							{groups.length > 0 ? (
+								<table className="border-collapse border border-slate-300 w-full mt-3">
+									<thead>
+										<tr>
+											<th className="border border-slate-300 p-2"></th>
+											<th className="border border-slate-300  p-2"></th>
+											<th className="border border-slate-300 p-2">
+												Name
+											</th>
+											<th className="border border-slate-300 p-2">
+												Purpose
+											</th>
+											<th className="border border-slate-300 p-2">
+												Members
+											</th>
+											<th className="border border-slate-300 p-2 max-w-min">
+												Actions
+											</th>
 										</tr>
-									))}
-								</tbody>
-								<tfoot>
-									<tr>
-										<th className="border border-slate-300 p-2"></th>
-										<th className="border border-slate-300 p-2"></th>
-										<th className="border border-slate-300 p-2">
-											Name
-										</th>
-										<th className="border border-slate-300 p-2">
-											Purpose
-										</th>
-										<th className="border border-slate-300 p-2">
-											Members
-										</th>
-										<th className="border border-slate-300 p-2">
-											Actions
-										</th>
-									</tr>
-								</tfoot>
-							</table>
-						) : (
-							<h1>Groups Not Found</h1>
-						)}
-					</>
-				)}
-			</article>
+									</thead>
+									<tbody>
+										{groups?.map((group) => (
+											<tr key={group.id}>
+												<td className="border border-slate-300 w-6 text-center">
+													<input
+														type="checkbox"
+														name="group"
+														id="group"
+														value={group.id}
+													/>
+												</td>
+												<td className="border border-slate-300 p-2 w-20 text-center">
+													{group?.avatar_url ? (
+														<img
+															src={
+																group.avatar_url
+															}
+															className="w-16 h-16 border border-slate-300 rounded-full"
+														/>
+													) : (
+														<BsFillImageFill title="Logo not uploaded" />
+													)}
+												</td>
+												<td className="relative border border-slate-300 p-2">
+													{group?.name}{" "}
+													<IoAddCircle
+														title="Add Bank Account"
+														className="md:absolute md:z-2 md:top-1/3 md:-right-2 cursor-pointer text-green-600 hover:text-green-800"
+													/>
+												</td>
+												<td className="border border-slate-300 p-2">
+													{group?.purpose?.join(", ")}
+												</td>
+												<td className="border border-slate-300 p-2">
+													{group?.members?.length ||
+														0}
+												</td>
+												<td className="border border-slate-300 max-w-min">
+													<div className="flex p-2 gap-5 justify-center">
+														<Link
+															to={`${group?.id}/edit`}
+															onClick={(
+																event
+															) => {
+																event.preventDefault();
+																// console.log(editing);
+																editGroup(
+																	group.id
+																);
+															}}>
+															<TiEdit
+																title="Edit Group"
+																className="text-blue-600 hover:text-blue-800"
+															/>
+														</Link>
+
+														<Link
+															className="text-red-500"
+															to="#"
+															onClick={(
+																event
+															) => {
+																event.preventDefault();
+																deleteGroup(
+																	group?.id
+																);
+															}}>
+															<RiDeleteBin2Fill
+																title="Delete Group"
+																className="text-red-600 hover:text-red-800"
+															/>
+														</Link>
+													</div>
+												</td>
+											</tr>
+										))}
+									</tbody>
+									<tfoot>
+										<tr>
+											<th className="border border-slate-300 p-2"></th>
+											<th className="border border-slate-300 p-2"></th>
+											<th className="border border-slate-300 p-2">
+												Name
+											</th>
+											<th className="border border-slate-300 p-2">
+												Purpose
+											</th>
+											<th className="border border-slate-300 p-2">
+												Members
+											</th>
+											<th className="border border-slate-300 p-2">
+												Actions
+											</th>
+										</tr>
+									</tfoot>
+								</table>
+							) : (
+								<h1>Groups Not Found</h1>
+							)}
+						</>
+					)}
+				</article>
+			</main>
 		</AuthWrapper>
 	);
 };

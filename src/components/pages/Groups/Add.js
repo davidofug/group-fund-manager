@@ -5,6 +5,8 @@ import AuthWrapper from "../../wrappers/Auth";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import { supabase } from "../../../helpers/supabaseClient";
+import Loader from "../../shared/Loader";
+import Alert from "../../shared/Alert";
 const AddGroup = () => {
 	React.useEffect(() => {
 		document.title = "GFM - Add Group";
@@ -13,6 +15,8 @@ const AddGroup = () => {
 		};
 	}, []);
 
+	const [loading, setLoading] = React.useState(false);
+	const [success, setSuccess] = React.useState(false);
 	const [errorMsg, setErrorMsg] = React.useState({});
 	const [file, setFile] = React.useState(null);
 	const logoElement = React.useRef(null);
@@ -46,7 +50,10 @@ const AddGroup = () => {
 			.required("What is the purpose of the group?"),
 	});
 
-	const addGroup = async (values) => {
+	const addGroup = async (values, resetForm) => {
+		setLoading(true);
+		setErrorMsg({});
+		setSuccess(false);
 		let avatarURL = "";
 		if (file) {
 			const { data: avatar, error: avatarError } = await supabase.storage
@@ -64,7 +71,7 @@ const AddGroup = () => {
 		}
 
 		const user = supabase.auth.user();
-		const { data, error } = await supabase.from("groups").insert([
+		const { data: group, error } = await supabase.from("groups").insert([
 			{
 				name: values.name,
 				added_by: user.id,
@@ -72,10 +79,30 @@ const AddGroup = () => {
 				purpose: values.purpose,
 			},
 		]);
+		if (group) {
+			setLoading(false);
+			setSuccess(true);
+			resetForm();
+		} else {
+			setLoading(false);
+			setErrorMsg({ msg: error.message });
+			setSuccess(false);
+		}
 	};
 
 	return (
 		<AuthWrapper>
+			{loading && (
+				<Loader
+					type="overlay"
+					title="Adding Group"
+					body="Please wait..."
+				/>
+			)}
+			{success && (
+				<Alert type="success" message="Group added successfully!" />
+			)}
+			{errorMsg?.msg && <Alert type="error" message={errorMsg?.msg} />}
 			<p className="mb-4">
 				<Link
 					to="/groups"

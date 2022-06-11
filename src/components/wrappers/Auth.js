@@ -5,10 +5,13 @@ import { FiChevronDown } from "react-icons/fi";
 import PrivateNav from "../shared/PrivateNav";
 import profilephoto from "../../assets/images/member.jpg";
 import { supabase } from "../../helpers/supabaseClient";
-
+import NotAuthorized from "../helpers/NotAuthorized";
 const Auth = ({ children }) => {
 	const { user, setUser } = useAuth();
 	const [menu, setMenu] = React.useState(false);
+
+	// const [notAuthorized] = useOutletContext();
+
 	const {
 		user_metadata: { first_name, last_name, avatar_url },
 	} = user;
@@ -16,6 +19,9 @@ const Auth = ({ children }) => {
 		setMenu(!menu);
 	};
 	const navigate = useNavigate();
+	// if (notAuthorized) {
+	// }
+
 	return (
 		<section className="grid grid-cols-12">
 			<PrivateNav />

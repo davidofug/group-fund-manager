@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 import Logo from "./Logo";
 function PublicNav() {
 	return (
-		<nav className="flex items-center justify-between flex-wrap py-6">
+		<nav className="flex items-center justify-between flex-wrap py-6 xs:mx-5 ">
 			<Link to="/" className="flex items-center flex-shrink-0 mr-4">
 				<Logo className="w-8 h-8 mr-1" />
 				<span className="font-bold text-xl tracking-tight text-black dark:text-gray-100">
 					Group Fund Manager
 				</span>
 			</Link>
-			<div className="hidden sm:block">
+			<div className="md:hidden">
 				<button className="flex items-center px-3 py-2 bg-black text-white hover:text-white hover:bg-blue">
 					<svg
 						className="fill-current h-3 w-3"
@@ -22,20 +22,20 @@ function PublicNav() {
 				</button>
 			</div>
 			<div className="hidden w-full flex-grow md:flex md:items-center md:w-auto">
-				<div className="text-xl md:flex-grow">
+				<div className="text-xl flex md:flex-grow space-x-8 justify-center">
 					<Link
 						to="/"
-						className="block mt-4 dark:text-gray-100 lg:inline-block lg:mt-0 text-black hover:text-blue mr-4">
+						className="dark:text-gray-100 text-black hover:text-blue">
 						Home
 					</Link>
 					<Link
 						to="/"
-						className="block mt-4 dark:text-gray-100 lg:inline-block lg:mt-0 text-black hover:text-blue mr-4">
+						className="dark:text-gray-100 text-black hover:text-blue">
 						About
 					</Link>
 					<Link
 						to="/"
-						className="block mt-4 dark:text-gray-100 lg:inline-block lg:mt-0 text-black hover:text-blue mr-4">
+						className="dark:text-gray-100 text-black hover:text-blue">
 						FAQs
 					</Link>
 				</div>

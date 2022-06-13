@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Landing from "./pages/Landingpage";
 import Login from "./pages/Login";
 import Missing from "./pages/Missing";
 import Layout from "./shared/Layout";
@@ -19,7 +20,7 @@ const MyRouter = () => {
 		<Router>
 			<Routes>
 				<Route path="/" element={<Layout />}>
-					<Route path="/" element={<Login />} />
+					<Route path="/" element={<Landing />} />
 					<Route path="/login" element={<Login />} />
 					<Route
 						path="/forgot-password"

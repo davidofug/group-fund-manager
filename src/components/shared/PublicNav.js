@@ -10,7 +10,7 @@ function PublicNav() {
 					Group Fund Manager
 				</span>
 			</Link>
-			<div className="md:hidden">
+			{/* 			<div className="md:hidden">
 				<button className="flex items-center px-3 py-2 bg-black text-white hover:text-white hover:bg-blue">
 					<svg
 						className="fill-current h-3 w-3"
@@ -20,10 +20,10 @@ function PublicNav() {
 						<path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
 					</svg>
 				</button>
-			</div>
+			</div> */}
 			<div className="hidden w-full flex-grow md:flex md:items-center md:w-auto">
 				<div className="text-xl flex md:flex-grow space-x-8 justify-center">
-					<Link
+					{/* 					<Link
 						to="/"
 						className="dark:text-gray-100 text-black hover:text-blue">
 						Home
@@ -37,11 +37,11 @@ function PublicNav() {
 						to="/"
 						className="dark:text-gray-100 text-black hover:text-blue">
 						FAQs
-					</Link>
+					</Link> */}
 				</div>
 				<Link
 					to="/login"
-					className="hidden md:block px-6 py-2 text-xl bg-blue rounded-full text-white transition duration-300 dark:bg-black dark:border-white dark:text-light-gray hover:-translate-y-1 hover:bg-blue dark:hover:text-white dark:hover:bg-black dark:hover:border-blue">
+					className="block px-6 py-2 text-xl bg-blue rounded-full text-white transition duration-300 dark:bg-black dark:border-white dark:text-light-gray hover:-translate-y-1 hover:bg-blue dark:hover:text-white dark:hover:bg-black dark:hover:border-blue">
 					Login
 				</Link>
 			</div>

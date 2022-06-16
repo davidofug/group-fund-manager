@@ -1,7 +1,8 @@
 import React from "react";
+import { BsFillImageFill } from "react-icons/bs";
+import { TiDelete } from "react-icons/ti";
 import { Link } from "react-router-dom";
 import Camera from "../../../assets/images/camera.png";
-import AuthWrapper from "../../wrappers/Auth";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import { supabase } from "../../../helpers/supabaseClient";
@@ -22,10 +23,7 @@ const NewGroup = ({ setGroups, groups }) => {
 
 	const selectLogo = () => {
 		setErrorMsg({});
-		console.log("Logo select clicked");
-		// logoElement.current.click();
-		document.getElementById("logo-element").click();
-		// console.log(logoElement);
+		logoElement.current.click();
 	};
 
 	const handleSelectedFile = (event) => {
@@ -82,7 +80,6 @@ const NewGroup = ({ setGroups, groups }) => {
 			])
 			.single();
 		if (group) {
-			console.log(group);
 			setGroups([...groups, group]);
 			setLoading(false);
 			setSuccess(true);
@@ -92,6 +89,10 @@ const NewGroup = ({ setGroups, groups }) => {
 			setErrorMsg({ msg: error.message });
 			setSuccess(false);
 		}
+		setTimeout(() => {
+			setFile(null);
+			setSuccess(false);
+		}, 6000);
 	};
 
 	return (
@@ -104,48 +105,55 @@ const NewGroup = ({ setGroups, groups }) => {
 				/>
 			)}
 			{success && (
-				<Alert type="success" message="Group added successfully!" />
+				<Alert
+					type="success"
+					float={true}
+					title="Group has been added"
+					message="Group added successfully!"
+					setStatus={setSuccess}
+					status={success}
+				/>
 			)}
 			{errorMsg?.msg && <Alert type="error" message={errorMsg?.msg} />}
-			<h1 className="font-bold">Add a Group</h1>
-			<p>
-				Groups are joinned by members. Through your invites or approval
-				after you approve their requests.
-			</p>
-			{file && (
-				<div className="w-28 h-28 rounded-full overflow-hidden border border-4 border-gray-500 cursor-pointer relative hover:border-red-500 mb-4">
-					<img
-						src={URL.createObjectURL(file)}
-						className="w-28 h-28 rounded-full overflow-hidden"
-						alt="Group Logo"
+			<h1 className="font-bold text-xl text-center mb-2">Add a Group</h1>
+
+			{file ? (
+				<>
+					<section className="flex items-center justify-center mb-4">
+						<img
+							src={URL.createObjectURL(file)}
+							className="w-24 h-24 rounded-full border border-2 border-gray-500 overflow-hidden"
+							alt="Group Logo"
+						/>
+						<TiDelete
+							size="30"
+							title="Delete This"
+							onClick={() => setFile(null)}
+							className="text-red-700 cursor-pointer"
+						/>
+					</section>
+					{errorMsg?.fileError && (
+						<p className="text-red-500">{errorMsg.fileError}</p>
+					)}
+				</>
+			) : (
+				<section className="flex flex-col items-center justify-center">
+					<BsFillImageFill
+						size="60"
+						onClick={selectLogo}
+						className="cursor-pointer"
 					/>
-					<div
-						onClick={() => setFile(null)}
-						className="absolute top-0 right-0 bottom-0 left-0 flex items-center justify-center text-white hover:bg-red-500/60 text-lg">
-						X
-					</div>
-				</div>
+					<span>Upload logo</span>
+				</section>
 			)}
 			<Formik
 				initialValues={initialValues}
 				validationSchema={groupSchema}
-				onSubmit={addGroup}>
+				onSubmit={(values, { resetForm }) =>
+					addGroup(values, resetForm)
+				}>
 				{({ errors, touched }) => (
 					<Form>
-						{!file && (
-							<div
-								id="selector-btn"
-								className="w-24 h-24 bg-black/60 bg-contain cursor-pointer border border-gray-400 rounded-md text-white text-center grid grid-cols-1 justify-content items-center"
-								style={{
-									backgroundImage: `url(${Camera})`,
-								}}>
-								<span>Logo</span>
-							</div>
-						)}
-
-						{errorMsg?.fileError && (
-							<p className="text-red-500">{errorMsg.fileError}</p>
-						)}
 						<input
 							type="file"
 							accept="image/*"

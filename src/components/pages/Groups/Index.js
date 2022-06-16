@@ -109,15 +109,8 @@ const Index = () => {
 				<aside className="col-span-3">
 					<NewGroup setGroups={setGroups} groups={groups} />
 				</aside>
-				<article className="col-span-9 bg-white border border-gray-300 rounded-md p-4">
-					<h1>
-						Groups{" "}
-						{/* 						<Link
-							to="/groups/add"
-							className="bg-blue-500 rounded-full px-3 py-1 text-white hover:bg-white hover:text-blue-500 hover:border hover:border-blue-500">
-							Add
-						</Link> */}
-					</h1>
+				<article className="col-span-9 bg-white border border-gray-300 rounded-md p-3">
+					<h1 className="text-xl font-bold">Groups</h1>
 					{loading ? (
 						<div className="min-h-full w-full flex flex-col justify-center items-center">
 							Loading
@@ -171,10 +164,10 @@ const Index = () => {
 												</td>
 												<td className="relative border border-slate-300 p-2">
 													{group?.name}{" "}
-													<IoAddCircle
+													{/* 													<IoAddCircle
 														title="Add Bank Account"
 														className="md:absolute md:z-2 md:top-1/3 md:-right-2 cursor-pointer text-green-600 hover:text-green-800"
-													/>
+													/> */}
 												</td>
 												<td className="border border-slate-300 p-2">
 													{group?.purpose?.join(", ")}
@@ -191,7 +184,6 @@ const Index = () => {
 																event
 															) => {
 																event.preventDefault();
-																// console.log(editing);
 																editGroup(
 																	group.id
 																);

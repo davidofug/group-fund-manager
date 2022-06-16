@@ -23,7 +23,7 @@ const Landingpage = () => {
 				<div className="py-8">
 					<Link
 						to="/login"
-						className="bg-blue rounded-full text-2xl px-8 py-2 text-white transition duration-300 dark:bg-black hover:-translate-y-1 hover:bg-black">
+						className="bg-myblue rounded-full text-2xl px-8 py-2 text-white transition duration-300 dark:bg-black hover:-translate-y-1 hover:bg-black">
 						Get started
 					</Link>
 				</div>
@@ -76,7 +76,7 @@ const Landingpage = () => {
 			</section>
 			<footer className="bg-slate-200 py-8 mt-12">
 				<section className="max-w-screen-lg mx-auto">
-					<p className="text-center text-gray">
+					<p className="text-center text-mygray">
 						&copy; Group Fund Manager{" "}
 					</p>
 				</section>

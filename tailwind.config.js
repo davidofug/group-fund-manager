@@ -13,8 +13,11 @@ module.exports = {
 		},
 		extend: {
 			colors: {
-				blue: "#1472C9",
-				gray: "#464646",
+				myblue: "#1472C9",
+				mygray: "#464646",
+			},
+			animation: {
+				"bounce-short": "bounce 1s ease-in 1",
 			},
 		},
 	},

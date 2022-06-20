@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import { supabase } from "../../helpers/supabaseClient";
 import { useAuth } from "../../components/hooks/useAuth";
 import Modal from "../shared/Modal";
+import Loader from "../shared/Loader";
 const Login = () => {
 	const location = useLocation();
 	const navigate = useNavigate();
@@ -62,12 +63,7 @@ const Login = () => {
 		}
 	};
 
-	if (loading)
-		return (
-			<Modal status={loading} setStatus={setLoading}>
-				<h1>Loading</h1>
-			</Modal>
-		);
+	if (loading) return <Loader type="overlay" title="Logging in" />;
 
 	return user ? (
 		<Navigate to={from} replace />

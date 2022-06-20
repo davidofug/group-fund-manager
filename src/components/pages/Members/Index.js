@@ -8,6 +8,8 @@ import NewProfile from "./New";
 
 import { Link } from "react-router-dom";
 import { supabase } from "../../../helpers/supabaseClient";
+import Loader from "../../shared/Loader";
+import { Ellipsis } from "../../shared/Preloaders/Loaders";
 const Index = () => {
 	const [members, setMembers] = React.useState([]);
 	const [error, setError] = React.useState({});
@@ -99,11 +101,7 @@ const Index = () => {
 				<article className="col-span-9 bg-white border border-gray-300 rounded-md p-4">
 					<h1 className="font-bold text-xl">Members</h1>
 					{loading ? (
-						<div className="min-h-full w-full flex flex-col justify-center items-center">
-							Loading
-							<br />
-							Please wait
-						</div>
+						<Ellipsis />
 					) : (
 						<>
 							{members.length > 0 ? (

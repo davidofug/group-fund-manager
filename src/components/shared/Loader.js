@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Ellipsis } from "./Preloaders/Loaders";
 const Loader = ({ type, title, body }) => {
 	return (
 		<div
@@ -10,6 +10,7 @@ const Loader = ({ type, title, body }) => {
 			<div className="text-center">
 				<div className="text-3xl font-bold">{title}</div>
 				<div className="text-2xl">{body}</div>
+				<Ellipsis />
 			</div>
 		</div>
 	);

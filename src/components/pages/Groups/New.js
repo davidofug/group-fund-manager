@@ -1,8 +1,7 @@
 import React from "react";
 import { BsFillImageFill } from "react-icons/bs";
 import { TiDelete } from "react-icons/ti";
-import { Link } from "react-router-dom";
-import Camera from "../../../assets/images/camera.png";
+// import { Link } from "react-router-dom";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import { supabase } from "../../../helpers/supabaseClient";
@@ -97,13 +96,7 @@ const NewGroup = ({ setGroups, groups }) => {
 
 	return (
 		<section className="bg-white p-3 md:border border-gray-300 md:rounded-md w-full items-center">
-			{loading && (
-				<Loader
-					type="overlay"
-					title="Adding Group"
-					body="Please wait..."
-				/>
-			)}
+			{loading && <Loader type="overlay" title="Adding Group" />}
 			{success && (
 				<Alert
 					type="success"

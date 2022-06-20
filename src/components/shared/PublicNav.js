@@ -41,7 +41,7 @@ function PublicNav() {
 				</div>
 				<Link
 					to="/login"
-					className="block px-6 py-2 text-xl bg-blue rounded-full text-white transition duration-300 dark:bg-black dark:border-white dark:text-light-gray hover:-translate-y-1 hover:bg-blue dark:hover:text-white dark:hover:bg-black dark:hover:border-blue">
+					className="block px-6 py-2 text-xl bg-myblue rounded-full text-white transition duration-300 dark:bg-black dark:border-white dark:text-light-gray hover:-translate-y-1 hover:bg-blue dark:hover:text-white dark:hover:bg-black dark:hover:border-blue">
 					Login
 				</Link>
 			</div>

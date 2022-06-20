@@ -1,16 +1,17 @@
 import React from "react";
 import { FaRegUserCircle } from "react-icons/fa";
 import { TiDelete } from "react-icons/ti";
-import { Link } from "react-router-dom";
 import { Formik, Field, Form } from "formik";
-// import Camera from "../../../assets/images/camera.png";
 import * as Yup from "yup";
 import { supabase } from "../../../helpers/supabaseClient";
+import Loader from "../../shared/Loader";
+import Alert from "../../shared/Alert";
 
-const New = () => {
+const New = ({ setProfiles, profiles }) => {
 	const [error, setError] = React.useState({});
 	const [groups, setGroups] = React.useState([]);
-	const [loading, setLoading] = React.useState(true);
+	const [success, setSuccess] = React.useState(false);
+	const [loading, setLoading] = React.useState(false);
 	const [errorMsg, setErrorMsg] = React.useState({});
 	const [file, setFile] = React.useState(null);
 	const avatarElement = React.useRef(null);
@@ -76,7 +77,10 @@ const New = () => {
 		group: Yup.string().required("Group is required!"),
 	});
 
-	const createUser = async (values) => {
+	const createUser = async (values, resetForm) => {
+		setLoading(true);
+		setErrorMsg({});
+		setSuccess(false);
 		const MyDate = new Date();
 		let timeStamp = MyDate.getTime();
 
@@ -121,6 +125,11 @@ const New = () => {
 		});
 
 		if (response.status === 200) {
+			console.log(response);
+			// setProfiles([profile, ...profiles]);
+			setLoading(false);
+			setSuccess(true);
+			resetForm();
 			setErrorMsg({});
 			setFile(null);
 			setError({});
@@ -141,6 +150,26 @@ const New = () => {
 	return (
 		<>
 			<section className="bg-white p-4 md:border border-gray-300 md:rounded-md w-full items-center">
+				{loading && (
+					<Loader
+						type="overlay"
+						title="Adding Member"
+						body="Please wait..."
+					/>
+				)}
+				{success && (
+					<Alert
+						type="success"
+						float={true}
+						title="Process completed"
+						message="Member added successfully!"
+						setStatus={setSuccess}
+						status={success}
+					/>
+				)}
+				{errorMsg?.msg && (
+					<Alert type="error" message={errorMsg?.msg} />
+				)}
 				<h1 className="font-bold text-center text-xl mb-2">
 					Add a Member
 				</h1>
@@ -171,7 +200,9 @@ const New = () => {
 				<Formik
 					initialValues={initialValues}
 					validationSchema={userSchema}
-					onSubmit={createUser}>
+					onSubmit={(values, { resetForm }) =>
+						createUser(values, resetForm)
+					}>
 					{({ errors, touched }) => (
 						<Form>
 							{errorMsg?.fileError && (
@@ -393,17 +424,17 @@ const New = () => {
 									</p>
 								) : null}
 							</div>
-							{Object.keys(errorMsg).length || errors > 0 ? (
+							{/* 							{Object.keys(errorMsg).length || errors > 0 ? (
 								<span className="bg-blue-100 rounded-full w-full text-white py-1 px-3 my-3 border font-semibold">
 									Save Member
 								</span>
-							) : (
-								<button
-									className="bg-blue-500 rounded-full w-full  block text-white text-xl py-1 px-3 my-3 border hover:bg-white hover:border hover:border-blue-500 hover:text-blue-500 font-semibold"
-									type="submit">
-									Save Member
-								</button>
-							)}
+							) : ( */}
+							<button
+								className="bg-blue-500 rounded-full w-full block text-white text-xl py-1 px-3 my-3 border hover:bg-white hover:border hover:border-blue-500 hover:text-blue-500 font-semibold"
+								type="submit">
+								Save Member
+							</button>
+							{/* )} */}
 						</Form>
 					)}
 				</Formik>

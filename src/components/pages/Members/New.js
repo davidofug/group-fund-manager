@@ -127,6 +127,7 @@ const New = ({ setProfiles, profiles }) => {
 		});
 		const results = await response.json();
 		if (results.result === "success") {
+			// console.log(results.user);
 			// console.log(response.result);
 			// setProfiles([profile, ...profiles]);
 			setLoading(false);

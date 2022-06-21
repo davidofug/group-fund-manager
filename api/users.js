@@ -46,7 +46,7 @@ module.exports = async (req, res) => {
 		if (error) {
 			res.send({ result: "failure", error });
 		} else {
-			res.send({ result: "success" });
+			res.send({ result: "success", user });
 		}
 	} else if (method === "DELETE") {
 		const {

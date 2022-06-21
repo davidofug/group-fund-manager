@@ -79,7 +79,7 @@ const New = ({ setProfiles, profiles }) => {
 
 	const createUser = async (values, resetForm) => {
 		setLoading(true);
-		setErrorMsg({});
+		setErrorMsg(null);
 		setSuccess(false);
 		const MyDate = new Date();
 		let timeStamp = MyDate.getTime();
@@ -106,6 +106,8 @@ const New = ({ setProfiles, profiles }) => {
 		const [initialGroup] = groups.filter(
 			(group) => group.id == values.group
 		);
+
+		// console.log(values);
 		let response = await fetch("/api/users", {
 			method: "POST",
 			body: JSON.stringify({
@@ -123,23 +125,23 @@ const New = ({ setProfiles, profiles }) => {
 				Accept: "application/json",
 			},
 		});
-
-		if (response.result === "success") {
-			console.log(await response.json());
+		const results = await response.json();
+		if (results.result === "success") {
+			// console.log(response.result);
 			// setProfiles([profile, ...profiles]);
 			setLoading(false);
 			setSuccess(true);
 			resetForm();
-			setErrorMsg({});
+			setErrorMsg(null);
 			setFile(null);
-			setError({});
+			setError(null);
 			return true;
 		} else {
 			setLoading(false);
-			console.log(response);
+			// console.log(results.result);
 			setErrorMsg({
 				source: "server",
-				message: "Something went wrong!",
+				msg: results?.error?.message,
 			});
 			return false;
 		}
@@ -170,7 +172,14 @@ const New = ({ setProfiles, profiles }) => {
 					/>
 				)}
 				{errorMsg?.msg && (
-					<Alert type="error" message={errorMsg?.msg} />
+					<Alert
+						type="error"
+						float={true}
+						title="Process Failed"
+						message={errorMsg?.msg}
+						setStatus={setSuccess}
+						status={success}
+					/>
 				)}
 				<h1 className="font-bold text-center text-xl mb-2">
 					Add a Member

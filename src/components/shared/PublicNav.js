@@ -6,7 +6,7 @@ function PublicNav() {
 		<nav className="flex items-center justify-between flex-wrap py-6 xs:mx-5 ">
 			<Link to="/" className="flex items-center flex-shrink-0 mr-4">
 				<Logo className="w-8 h-8 mr-1" />
-				<span className="font-bold text-xl tracking-tight text-black dark:text-gray-100">
+				<span className="font-bold text-xl tracking-tight text-black">
 					Group Fund Manager
 				</span>
 			</Link>

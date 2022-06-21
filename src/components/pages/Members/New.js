@@ -106,7 +106,7 @@ const New = ({ setProfiles, profiles }) => {
 		const [initialGroup] = groups.filter(
 			(group) => group.id == values.group
 		);
-		let response = fetch("/api/users", {
+		let response = await fetch("/api/users", {
 			method: "POST",
 			body: JSON.stringify({
 				...values,
@@ -124,8 +124,8 @@ const New = ({ setProfiles, profiles }) => {
 			},
 		});
 
-		if (response.status === 200) {
-			console.log(response);
+		if (response.result === "success") {
+			console.log(await response.json());
 			// setProfiles([profile, ...profiles]);
 			setLoading(false);
 			setSuccess(true);
@@ -135,6 +135,8 @@ const New = ({ setProfiles, profiles }) => {
 			setError({});
 			return true;
 		} else {
+			setLoading(false);
+			console.log(response);
 			setErrorMsg({
 				source: "server",
 				message: "Something went wrong!",
@@ -145,7 +147,7 @@ const New = ({ setProfiles, profiles }) => {
 
 	React.useEffect(() => {
 		getGroups();
-	});
+	}, []);
 
 	return (
 		<>

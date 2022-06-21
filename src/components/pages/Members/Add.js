@@ -5,6 +5,7 @@ import { Formik, Field, Form } from "formik";
 import Camera from "../../../assets/images/camera.png";
 import * as Yup from "yup";
 import { supabase } from "../../../helpers/supabaseClient";
+import Helmet from "react-helmet";
 
 const AddMember = () => {
 	const [error, setError] = React.useState({});
@@ -139,6 +140,9 @@ const AddMember = () => {
 
 	return (
 		<AuthWrapper>
+			<Helmet>
+				<title>GFM - Add Members</title>
+			</Helmet>
 			<p className="mb-4">
 				<Link
 					to="/members"

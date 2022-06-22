@@ -25,19 +25,17 @@ Enables Small Investment Group Administrators to Record Savings, Loans, and Inve
 
 ## How to add a Group
 
-1. Go to the Left side bar menu
-2. Click Groups
-3. The details you can provide about a new Group are:-
+1. Click Groups at Menu on the left
+2. The details you can provide about a new Group are:-
     - Photo (optional)
     - Group name
     - Purpose
-4. Click Save Group
+3. Click Save Group
 
 ## How to add a Member
 
-1. Go to the Left side bar menu
-2. Click Members
-3. The details you can provide about a new Member are:-
+1. Click Members on Menu at the Left
+2. The details you can provide about a new Member are:-
     - Photo (optional)
     - Phone number
     - First Name
@@ -47,7 +45,12 @@ Enables Small Investment Group Administrators to Record Savings, Loans, and Inve
     - Password
     - Confirm Password
     - Role
-4. Click Save Member
+3. Click Save Member
+
+## How To View Existing Members
+
+1. Click Members on the Menu
+2. Members appear in the list at the right of the side of Add Member form.
 
 ## How to add a Transaction
 

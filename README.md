@@ -24,7 +24,7 @@ Enables Small Investment Group Administrators to Record Savings, Loans, and Inve
 2. Groups
 3. Members
 
-### Members
+### How to add a Member
 
 1. Phone number
 2. First Name
@@ -34,14 +34,14 @@ Enables Small Investment Group Administrators to Record Savings, Loans, and Inve
 6. Password
 7. Select Role
 
-### Groups
+### How to add a Group
 
 1. Name
 2. Purpose
 3. Members
 4. Actions
 
-### Transactions
+### How to add a Transaction
 
 1. Amount
 2. Date
@@ -56,6 +56,7 @@ Enables Small Investment Group Administrators to Record Savings, Loans, and Inve
 A manual for beginners and seasoned contributors to open source.
 Contributing to open source can be a fruitful approach to gain knowledge, impart it, and develop expertise in a related field.
 If there is anyway you can contribute let us know through raising an issue. You can also give it a star.
+
 >> This will help us put more resources into this project.
 
 ## How to Contribute
@@ -65,20 +66,25 @@ If there is anyway you can contribute let us know through raising an issue. You 
 1. Fork to get your copy.
 2. Clone Fork to your computer.
 3. Navigate to the project directory and:-
+
     → Run ``yarn add`` or ``npm install``
+
     → Run ``yarn start`` or ``npm start``
+
 4. Test your code and make sure it works.
 5. Commit and use a concise commit message.
 6. Push to your repo.
 7. Send a Pull Request.
 8. Wait for PR review.
+
 9.Your contribution will go live in a few days after approval.
+
 10. If not approved you will get response.
 
 ## Other contributions
 
-1. You can contribute by using the app and sharing your feedback via the Github issues tab
-3. You can suggest features
+1. You can contribute by using the app and sharing your feedback via the Github issues tab.
+3. You can suggest features.
 
 # Why should you Contribute?
 

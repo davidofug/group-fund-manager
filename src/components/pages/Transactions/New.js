@@ -3,7 +3,10 @@ import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import { supabase } from "../../../helpers/supabaseClient";
 
-const New = () => {
+const New = ({ setTransactions, transactions }) => {
+	const [loading, setLoading] = React.useState(false);
+	const [success, setSuccess] = React.useState(false);
+	const [errorMsg, setErrorMsg] = React.useState({});
 	const initialValues = {
 		category: "",
 		group: "",
@@ -28,8 +31,35 @@ const New = () => {
 		loan_applicatin: Yup.string().required("Loan application required!"),
 	});
 
-	const createTransaction = async () => {
-		supabase.from("transactions").insert({});
+	const createTransaction = async (values, resetForm) => {
+		setLoading(true);
+		setErrorMsg({});
+		setSuccess(false);
+		const user = supabase.auth.user();
+		const { data: transaction, error } = supabase
+			.from("transactions")
+			.insert([
+				{
+					name: values.name,
+					added_by: user.id,
+					purpose: values.purpose,
+				},
+			])
+			.single();
+
+		if (transaction) {
+			setTransactions([transaction, ...transactions]);
+			setLoading(false);
+			setSuccess(true);
+			resetForm();
+		} else {
+			setLoading(false);
+			setErrorMsg({ msg: error.message });
+			setSuccess(false);
+		}
+		setTimeout(() => {
+			setSuccess(false);
+		}, 6000);
 	};
 
 	return (

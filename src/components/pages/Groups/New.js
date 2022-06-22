@@ -108,6 +108,7 @@ const NewGroup = ({ setGroups, groups }) => {
 				/>
 			)}
 			{errorMsg?.msg && <Alert type="error" message={errorMsg?.msg} />}
+
 			<h1 className="font-bold text-xl text-center mb-2">Add a Group</h1>
 
 			{file ? (

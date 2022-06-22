@@ -13,6 +13,10 @@ const Landingpage = () => {
 				<h1 className="text-center text-3xl">
 					Group Fund Management Automated.
 				</h1>
+				<p>
+					Allows administrators to keep record and track members'
+					savings, loans, and investments.
+				</p>
 				<figure>
 					<img
 						src={groupTable}
@@ -31,7 +35,7 @@ const Landingpage = () => {
 			<section className="container max-w-screen-lg mx-auto md:flex md:gap-14 xs:flex-reverse">
 				<article className="md:w-1/2 lg:w-1/2">
 					<h1 className="text-3xl font-bold mb-8">
-						What you can do?
+						What can you do?
 					</h1>
 					<ul>
 						<li className="mb-4">

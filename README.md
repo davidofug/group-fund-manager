@@ -56,6 +56,7 @@ Enables Small Investment Group Administrators to Record Savings, Loans, and Inve
 A manual for beginners and seasoned contributors to open source.
 Contributing to open source can be a fruitful approach to gain knowledge, impart it, and develop expertise in a related field.
 If there is anyway you can contribute let us know through raising an issue. You can also give it a star.
+
 >> This will help us put more resources into this project.
 
 ## How to Contribute

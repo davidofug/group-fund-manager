@@ -18,12 +18,12 @@ Enables Small Investment Group Administrators to Record Savings, Loans, and Inve
 
 3. Add Transaction for a Member.
 
-## Get Startd
+# Get Started
 
 1. Login
 2. Reset Password
 
-### How to add a Group
+## How to add a Group
 
 1. Go to the Left side bar menu
 2. Click Groups
@@ -33,7 +33,7 @@ Enables Small Investment Group Administrators to Record Savings, Loans, and Inve
     - Purpose
 4. Click Save Group
 
-### How to add a Member
+## How to add a Member
 
 1. Go to the Left side bar menu
 2. Click Members
@@ -49,7 +49,7 @@ Enables Small Investment Group Administrators to Record Savings, Loans, and Inve
     - Role
 4. Click Save Member
 
-### How to add a Transaction
+## How to add a Transaction
 
 1. Amount
 2. Date
@@ -68,27 +68,27 @@ You can also give it a star.
 
 > > This will help us put more resources into this project.
 
-## How to Contribute
+## How To Contribute
 
 ## Code and Technical contributions
 
 1. Fork to get your copy.
 2. Clone Fork to your computer.
-3. Navigate to the project directory and:-
+3. Open the terminal at your project directory:-
+4. Run the following commands
 
-    → Run `yarn add` or `npm install`
+    1. `yarn add` or `npm install`
+    2. `yarn start` or `npm start`
 
-    → Run `yarn start` or `npm start`
+5. Test your code and make sure it works.
+6. Commit and use a concise commit message.
+7. Push to your repo.
+8. Send a Pull Request.
+9. Wait for PR review.
 
-4. Test your code and make sure it works.
-5. Commit and use a concise commit message.
-6. Push to your repo.
-7. Send a Pull Request.
-8. Wait for PR review.
+10. Your contribution will go live in a few days after approval.
 
-9. Your contribution will go live in a few days after approval.
-
-10. If not approved you will get response.
+11. If not approved you will get response.
 
 ## Other contributions
 

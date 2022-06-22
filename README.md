@@ -55,7 +55,8 @@ Enables Small Investment Group Administrators to Record Savings, Loans, and Inve
 
 A manual for beginners and seasoned contributors to open source.
 Contributing to open source can be a fruitful approach to gain knowledge, impart it, and develop expertise in a related field.
-If there is anyway you can contribute let us know through raising an issue. You can also give it a star.
+If there is anyway you can contribute let us know through raising an issue.
+You can also give it a star.
 
 > > This will help us put more resources into this project.
 
@@ -77,7 +78,7 @@ If there is anyway you can contribute let us know through raising an issue. You 
 7. Send a Pull Request.
 8. Wait for PR review.
 
-9.Your contribution will go live in a few days after approval.
+9. Your contribution will go live in a few days after approval.
 
 10. If not approved you will get response.
 

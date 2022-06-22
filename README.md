@@ -8,9 +8,9 @@ For more information: [group-fund-manager.vercel.app](https://group-fund-manager
 
 # Group Fund Manager
 
-Enables Small Investment Group Administrators to Record Savings, Loans, and Investment transactions to ease book keeping.
+Allows administrators to keep record and track members' savings, loans, and investments.
 
-# How it works
+# How It Works
 
 1. Don’t have a group? Add it.
 

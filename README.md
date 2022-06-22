@@ -12,34 +12,34 @@ Enables Small Investment Group Administrators to Record Savings, Loans, and Inve
 
 # How it works
 
-## Log in page
+1. Don’t have a group? Add it.
 
-1. Register
-2. Login
-3. Reset password
+2. Add Member to your group.
 
-## Dashboard
+3. Add Transaction for a Member.
 
-1. Transactions
-2. Groups
-3. Members
+## Get Startd
 
-### How to add a Member
-
-1. Phone number
-2. First Name
-3. Last Name
-4. Gender
-5. Select Group
-6. Password
-7. Select Role
+1. Login
+2. Reset Password
 
 ### How to add a Group
 
-1. Name
-2. Purpose
-3. Members
-4. Actions
+1. Go to the Left side bar menu
+2. Click Groups
+3. Provide the details to add the Group
+    - Photo (optional)
+    - Group name
+    - Purpose
+4. Click Save Group
+
+### How to add a Member
+
+1. Go to the Left side bar menu
+2. Click Members
+3. Provide details in the form
+   The form has the following fields. - Phone number - First Name - Last Name - Gender - Select Group - Password - Select Role
+4. Click Save Member
 
 ### How to add a Transaction
 
@@ -57,7 +57,7 @@ A manual for beginners and seasoned contributors to open source.
 Contributing to open source can be a fruitful approach to gain knowledge, impart it, and develop expertise in a related field.
 If there is anyway you can contribute let us know through raising an issue. You can also give it a star.
 
->> This will help us put more resources into this project.
+> > This will help us put more resources into this project.
 
 ## How to Contribute
 
@@ -67,9 +67,9 @@ If there is anyway you can contribute let us know through raising an issue. You 
 2. Clone Fork to your computer.
 3. Navigate to the project directory and:-
 
-    → Run ``yarn add`` or ``npm install``
+    → Run `yarn add` or `npm install`
 
-    → Run ``yarn start`` or ``npm start``
+    → Run `yarn start` or `npm start`
 
 4. Test your code and make sure it works.
 5. Commit and use a concise commit message.
@@ -84,7 +84,7 @@ If there is anyway you can contribute let us know through raising an issue. You 
 ## Other contributions
 
 1. You can contribute by using the app and sharing your feedback via the Github issues tab.
-3. You can suggest features.
+2. You can suggest features.
 
 # Why should you Contribute?
 
@@ -109,6 +109,3 @@ If there is anyway you can contribute let us know through raising an issue. You 
 → Hosting: Vercel.com
 
 Thank you 🙂👍🏽
-
-
-

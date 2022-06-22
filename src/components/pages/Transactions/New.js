@@ -15,6 +15,7 @@ const New = () => {
 		date: "",
 		loan_applicatin: "",
 	};
+
 	const transactionSchema = Yup.object().shape({
 		category: Yup.string().required("Choose category"),
 		group: Yup.string().required("Choose group"),
@@ -27,15 +28,8 @@ const New = () => {
 		loan_applicatin: Yup.string().required("Loan application required!"),
 	});
 
-	const createTransaction = () => {
-		supabase.setSite("gfm");
-		supabase.setTable("users");
-		supabase.create({
-			category: "",
-			password: "",
-			first_name: "",
-			last_name: "",
-		});
+	const createTransaction = async () => {
+		supabase.from("transactions").insert({});
 	};
 
 	return (

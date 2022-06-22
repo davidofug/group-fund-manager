@@ -25,7 +25,7 @@ Enables Small Investment Group Administrators to Record Savings, Loans, and Inve
 
 ## How to add a Group
 
-1. Click Groups at Menu on the left
+1. Click Groups on the Menu at the left
 2. The details you can provide about a new Group are:-
     - Photo (optional)
     - Group name
@@ -34,7 +34,7 @@ Enables Small Investment Group Administrators to Record Savings, Loans, and Inve
 
 ## How to add a Member
 
-1. Click Members on Menu at the Left
+1. Click Members on the Menu at the left
 2. The details you can provide about a new Member are:-
     - Photo (optional)
     - Phone number

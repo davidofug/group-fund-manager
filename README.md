@@ -1,6 +1,6 @@
 ![Logo](public/logo192.png)
 
-For more information: [group-fund-manager.app](https://group-fund-manager.vercel.app)
+For more information: [group-fund-manager.vercel.app](https://group-fund-manager.vercel.app)
 
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
 ![build succeeded](https://img.shields.io/badge/build-succeeded-brightgreen.svg)

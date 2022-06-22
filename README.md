@@ -97,6 +97,7 @@ You can also give it a star.
 
 1. You can contribute by using the app and sharing your feedback via the Github issues tab.
 2. You can suggest features.
+3. Any form support is appreciated in advance.
 
 # Why should you Contribute?
 

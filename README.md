@@ -8,7 +8,7 @@ For more information: [group-fund-manager.vercel.app](https://group-fund-manager
 
 # Group Fund Manager
 
-Allows administrators to keep record and track members' savings, loans, and investments.
+Allows administrators to keep and track financial records for small groups.
 
 # How It Works
 
@@ -54,26 +54,20 @@ Allows administrators to keep record and track members' savings, loans, and inve
 
 ## How to add a Transaction
 
-1. Amount
-2. Date
-3. Choose category
-4. Choose group
-5. Choose cause
-6. Member
-7. Loan Application
+1. Click Transactions on the Menu at the left
+2. See a Transaction form at the right of the menu.
+3. Provide necessary details about the Transaction in the form. The details you can provide:-
 
-# Want to contribute?
-
-A manual for beginners and seasoned contributors to open source.
-Contributing to open source can be a fruitful approach to gain knowledge, impart it, and develop expertise in a related field.
-If there is anyway you can contribute let us know through raising an issue.
-You can also give it a star.
-
-> > This will help us put more resources into this project.
+    - Amount
+    - Date
+    - Charges
+    - category
+    - Group
+    - Cause
+    - Member
+    - Loan Application
 
 ## How To Contribute
-
-## Code and Technical contributions
 
 1. Fork to get your copy.
 2. Clone Fork to your computer.
@@ -93,32 +87,26 @@ You can also give it a star.
 
 11. If not approved you will get response.
 
-## Other contributions
+## More contributions
 
-1. You can contribute by using the app and sharing your feedback via the Github issues tab.
-2. You can suggest features.
-3. Any form of support is greatly appreciated.
+1. Use the app and sharing your feedback
+2. Open an issue
+3. Suggest features.
 
 # Why should you Contribute?
 
-1. Improve software.
-2. Improve existing skills.
-3. Meet people who are interested in similar projects.
-4. Build public atifacts that help you grow a reputation and career.
-5. Learn people skills.
-6. Empowering to be able to make changes even small ones.
-7. Take the opportunity to create the impact doing what you love.
-8. Increase your Github commits.
-9. Add your voice to Open Source.
-10. Receive credit through mentions.
-11. Use the code to build your own SaaS project.
+1. Improves your coding skills.
+2. Connect with people of likemind.
+3. Build public atifacts that help you grow a reputation and career.
+4. Increase your Github commits.
+5. Add your voice to Open Source.
 
-# Tech Stack
+## Tech Stack
 
-→ Frontend: ReactJS, TailwindCSS
+These are the technologies used to collectively to power this project.
 
-→ Backend as a Service: Supabase
+    Frontend: ReactJS, TailwindCSS
 
-→ Hosting: Vercel.com
+    Backend as a Service: Supabase
 
-Thank you 🙂👍🏽
+    Hosting: Vercel.com

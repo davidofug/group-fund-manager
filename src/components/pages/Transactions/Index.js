@@ -42,12 +42,12 @@ const Index = () => {
 			<main className="grid gap-2 grid-cols-12">
 				<aside className="col-span-3">
 					<NewTransaction
-						setTransaction={setTransactions}
+						setTransactions={setTransactions}
 						transactions={transactions}
 					/>
 				</aside>
 				<article className="col-span-9 bg-white border border-gray-300 rounded-md p-4">
-					<h1 className="text-xl font-bold">Transactions </h1>
+					<h1 className="text-xl font-bold">Transactions</h1>
 					{loading ? (
 						<div className="min-h-full w-full flex flex-col justify-center items-center">
 							Loading

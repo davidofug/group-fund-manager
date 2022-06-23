@@ -2,11 +2,20 @@ import React from "react";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import { supabase } from "../../../helpers/supabaseClient";
-
+import Loader from "../../shared/Loader";
+import Alert from "../../shared/Alert";
 const New = ({ setTransactions, transactions }) => {
 	const [loading, setLoading] = React.useState(false);
 	const [success, setSuccess] = React.useState(false);
 	const [errorMsg, setErrorMsg] = React.useState({});
+
+	React.useEffect(() => {
+		console.log("Re rendered");
+
+		return () => {
+			return false;
+		};
+	}, []);
 	const initialValues = {
 		category: "",
 		group: "",
@@ -24,14 +33,15 @@ const New = ({ setTransactions, transactions }) => {
 		group: Yup.string().required("Choose group"),
 		cause: Yup.string().required("Choose cause"),
 		member: Yup.string().required("Choose member"),
-		amount: Yup.string().required("Amount required!"),
-		charges: Yup.string().required("Amount required!"),
+		amount: Yup.number().required("Amount required!"),
+		charges: Yup.number().required("Amount required!"),
 		notes: Yup.string().required("Notes required!"),
-		date: Yup.string().required("Date required!"),
-		loan_applicatin: Yup.string().required("Loan application required!"),
+		// date: Yup.string().required("Date required!"),
+		// loan_applicatin: Yup.string().required("Loan application required!"),
 	});
 
-	const createTransaction = async (values, resetForm) => {
+	const submitTransaction = async (values, resetForm) => {
+		console.log("Form will submit");
 		setLoading(true);
 		setErrorMsg({});
 		setSuccess(false);
@@ -40,13 +50,22 @@ const New = ({ setTransactions, transactions }) => {
 			.from("transactions")
 			.insert([
 				{
-					name: values.name,
-					added_by: user.id,
-					purpose: values.purpose,
+					creator_id: user.id,
+					member_id: values.member,
+					group_id: values.group,
+					type: values.category,
+					amount: values.amount,
+					charges: values.charges,
+					purpose: values.notes,
+					meta: {
+						date: values.date,
+						loan_applicatin: values.loan_applicatin,
+					},
 				},
 			])
 			.single();
-
+		console.error(error);
+		console.log(transaction);
 		if (transaction) {
 			setTransactions([transaction, ...transactions]);
 			setLoading(false);
@@ -64,13 +83,30 @@ const New = ({ setTransactions, transactions }) => {
 
 	return (
 		<section className="bg-white p-5 md:border border-gray-300 md:rounded-md w-full items-center">
+			{loading && <Loader type="overlay" title="Adding Group" />}
+			{success && (
+				<Alert
+					type="success"
+					float={true}
+					title="Group has been added"
+					message="Group added successfully!"
+					setStatus={setSuccess}
+					status={success}
+				/>
+			)}
+			{errorMsg?.msg && <Alert type="error" message={errorMsg?.msg} />}
+
 			<h1 className="font-bold text-xl text-center mb-2">
 				Add a Transaction
 			</h1>
 			<Formik
 				initialValues={initialValues}
 				validationSchema={transactionSchema}
-				onSubmit={createTransaction}>
+				onSubmit={(values, { resetForm }) => {
+					submitTransaction(values, resetForm);
+					console.log("Submitting");
+					console.log(values);
+				}}>
 				{({ errors, touched }) => (
 					<Form>
 						<div>
@@ -197,7 +233,7 @@ const New = ({ setTransactions, transactions }) => {
 								</p>
 							) : null}
 						</div>
-						<div>
+						{/* 						<div>
 							<Field
 								as="select"
 								name="loan_application"
@@ -215,9 +251,9 @@ const New = ({ setTransactions, transactions }) => {
 									{errors.loan_applicatin}
 								</p>
 							) : null}
-						</div>
+						</div> */}
 						<button
-							className="bg-blue-700 rounded-full w-full text-white py-2 px-4 my-3  hover:bg-gray-600 font-semibold"
+							className="bg-blue-700 rounded-full w-full text-white py-2 px-4 my-3 hover:bg-gray-600 font-semibold"
 							type="submit">
 							Save
 						</button>

@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { supabase } from "../../../helpers/supabaseClient";
 import Loader from "../../shared/Loader";
 import Alert from "../../shared/Alert";
-const New = ({ setTransactions, transactions, getTransactions }) => {
+const New = ({ getTransactions }) => {
 	const [loading, setLoading] = React.useState(false);
 	const [success, setSuccess] = React.useState(false);
 	const [errorMsg, setErrorMsg] = React.useState({});

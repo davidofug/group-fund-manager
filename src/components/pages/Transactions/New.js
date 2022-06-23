@@ -63,8 +63,6 @@ const New = ({ setTransactions, transactions }) => {
 				},
 			])
 			.single();
-		// console.error(error);
-		// console.log(transaction);
 		if (transaction) {
 			setTransactions([transaction, ...transactions]);
 			setLoading(false);
@@ -105,8 +103,6 @@ const New = ({ setTransactions, transactions }) => {
 				validationSchema={transactionSchema}
 				onSubmit={(values, { resetForm }) => {
 					submitTransaction(values, resetForm);
-					// console.log("Submitting");
-					// console.log(values);
 				}}>
 				{({ errors, touched }) => (
 					<Form>

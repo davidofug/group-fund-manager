@@ -11,7 +11,7 @@ const Index = () => {
 	const getTransactions = async () => {
 		try {
 			const { data: myTransactions, error } = await supabase
-				.from("transactions")
+				.from("mytransactions")
 				.select();
 			if (error) {
 				setError({
@@ -33,6 +33,7 @@ const Index = () => {
 
 	React.useEffect(() => {
 		getTransactions();
+		console.log(transactions);
 	}, []);
 	return (
 		<AuthWrapper>
@@ -59,52 +60,92 @@ const Index = () => {
 							{transactions.length > 0 ? (
 								<table className="border-collapse border border-slate-300 w-full mt-3">
 									<thead>
-										<tr>
-											<th className="border border-slate-300 p-2"></th>
-											<th className="border border-slate-300  p-2"></th>
+										<tr className="text-left">
 											<th className="border border-slate-300 p-2">
-												Name
+												<input
+													type="checkbox"
+													name="group"
+													id="group"
+													value="all"
+												/>
 											</th>
 											<th className="border border-slate-300 p-2">
-												Members
+												Date
 											</th>
-											<th className="border border-slate-300 p-2 max-w-min">
-												Actions
+											<th className="border border-slate-300 p-2">
+												Amount
+											</th>
+											<th className="border border-slate-300 p-2 text-left">
+												Member
+											</th>
+											<th className="border border-slate-300 p-2">
+												Group
 											</th>
 										</tr>
 									</thead>
 									<tbody>
-										{transactions?.map((transaction) => (
-											<tr key={transaction.id}>
-												<td className="border border-slate-300 w-6 text-center">
-													<input
-														type="checkbox"
-														name="group"
-														id="group"
-														value={transaction.id}
-													/>
-												</td>
-												<td className="border border-slate-300 p-2 w-20"></td>
-												<td className="border border-slate-300 p-2"></td>
-												<td className="border border-slate-300 p-2"></td>
-												<td className="border border-slate-300 p-2 max-w-min">
-													Edit | Delete
-												</td>
-											</tr>
-										))}
+										{transactions?.map((transaction) => {
+											const createdAt = new Date(
+												transaction.created_at
+											);
+											return (
+												<tr key={transaction.id}>
+													<td className="border border-slate-300 w-6 text-center">
+														<input
+															type="checkbox"
+															name="group"
+															id="group"
+															value={
+																transaction.id
+															}
+														/>
+													</td>
+													<td className="border border-slate-300 p-2 w-20">
+														{createdAt.toLocaleDateString()}
+													</td>
+													<td className="border border-slate-300 p-2">
+														{transaction.amount}
+													</td>
+													<td className="border border-slate-300 p-2">
+														{
+															transaction
+																.profile_meta
+																?.first_name
+														}{" "}
+														{
+															transaction
+																.profile_meta
+																?.last_name
+														}
+													</td>
+													<td className="border border-slate-300 p-2">
+														{transaction.group_name}
+													</td>
+												</tr>
+											);
+										})}
 									</tbody>
-									<tfoot>
+									<tfoot className="text-left">
 										<tr>
-											<th className="border border-slate-300 p-2"></th>
-											<th className="border border-slate-300 p-2"></th>
 											<th className="border border-slate-300 p-2">
-												Name
+												<input
+													type="checkbox"
+													name="group"
+													id="group"
+													value="all"
+												/>
 											</th>
 											<th className="border border-slate-300 p-2">
-												Members
+												Date
 											</th>
 											<th className="border border-slate-300 p-2">
-												Actions
+												Amount
+											</th>
+											<th className="border border-slate-300 p-2">
+												Member
+											</th>
+											<th className="border border-slate-300 p-2">
+												Group
 											</th>
 										</tr>
 									</tfoot>

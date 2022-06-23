@@ -69,21 +69,21 @@ Allows administrators to keep and track financial records for small groups.
 
 ## How To Contribute
 
-1. Fork to get your copy.
-2. Clone Fork to your computer.
-3. Open the terminal at your project directory:-
+1. Fork this project.
+2. Clone this project.
+3. Open the terminal at the project root directory:-
 4. Run the following commands
 
     1. `yarn add` or `npm install`
     2. `yarn start` or `npm start`
 
-5. Test your code and make sure it works.
-6. Commit and use a concise commit message.
+5. Test your code.
+6. Commit your changes.
 7. Push to your repo.
-8. Send a Pull Request.
+8. Send us a Pull Request (PR).
 9. Wait for PR review.
 
-10. Your contribution will go live in a few days after approval.
+10. After Approve your contribution will go live.
 
 11. If not approved you will get response.
 
@@ -92,6 +92,7 @@ Allows administrators to keep and track financial records for small groups.
 1. Use the app and share feedback.
 2. Open an issue.
 3. Suggest features.
+4. Tell your friends about the app.
 
 # Why should you Contribute?
 

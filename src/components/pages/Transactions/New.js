@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { supabase } from "../../../helpers/supabaseClient";
 import Loader from "../../shared/Loader";
 import Alert from "../../shared/Alert";
-const New = ({ setTransactions, transactions }) => {
+const New = ({ setTransactions, transactions, getTransactions }) => {
 	const [loading, setLoading] = React.useState(false);
 	const [success, setSuccess] = React.useState(false);
 	const [errorMsg, setErrorMsg] = React.useState({});
@@ -23,7 +23,7 @@ const New = ({ setTransactions, transactions }) => {
 		charges: 0,
 		comments: "",
 		date: "",
-		loan_applicatin: null,
+		loan_application: null,
 	};
 
 	const transactionSchema = Yup.object().shape({
@@ -34,8 +34,6 @@ const New = ({ setTransactions, transactions }) => {
 			"Amount required!"
 		),
 		charges: Yup.number("Charges has to be a number!"),
-		date: Yup.date("Check the date!"),
-		loan_applicatin: Yup.string(),
 	});
 
 	const submitTransaction = async (values, resetForm) => {
@@ -48,22 +46,23 @@ const New = ({ setTransactions, transactions }) => {
 			.insert([
 				{
 					creator_id: user.id,
-					member_id: "c68cb3ab-ed6b-4a12-a212-46e566e8ddb8",
+					member_id: "17da6c3c-30d3-4cdb-a84f-b8c9b2599ca2",
 					group_id: 39,
 					type: values.category,
 					amount: values.amount,
-					purpose: "" || values.cause,
+					purpose: "" ?? values.cause,
 					meta: {
 						date: values.date,
-						loan_applicatin: values.loan_applicatin,
-						charges: "" || values.charges,
-						comments: "" || values.notes,
+						loan_application: values.loan_application,
+						charges: "" ?? values.charges,
+						comments: "" ?? values.notes,
 					},
 				},
 			])
 			.single();
 		if (transaction) {
-			setTransactions([transaction, ...transactions]);
+			// setTransactions([transaction, ...transactions]);
+			getTransactions();
 			setLoading(false);
 			setSuccess(true);
 			resetForm();
@@ -105,7 +104,7 @@ const New = ({ setTransactions, transactions }) => {
 				}}>
 				{({ errors, touched }) => (
 					<Form>
-						{errors && JSON.stringify(errors, null, 2)}
+						{/* {errors && JSON.stringify(errors, null, 2)} */}
 						<div>
 							<Field
 								type="text"

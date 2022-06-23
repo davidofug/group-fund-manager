@@ -44,6 +44,7 @@ const Index = () => {
 					<NewTransaction
 						setTransactions={setTransactions}
 						transactions={transactions}
+						getTransactions={getTransactions}
 					/>
 				</aside>
 				<article className="col-span-9 bg-white border border-gray-300 rounded-md p-4">

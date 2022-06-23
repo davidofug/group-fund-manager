@@ -89,8 +89,8 @@ Allows administrators to keep and track financial records for small groups.
 
 ## More contributions
 
-1. Use the app and sharing your feedback
-2. Open an issue
+1. Use the app and share feedback.
+2. Open an issue.
 3. Suggest features.
 
 # Why should you Contribute?
@@ -103,7 +103,7 @@ Allows administrators to keep and track financial records for small groups.
 
 ## Tech Stack
 
-These are the technologies used to collectively to power this project.
+The following are the technologies used to develop this project.
 
     Frontend: ReactJS, TailwindCSS
 

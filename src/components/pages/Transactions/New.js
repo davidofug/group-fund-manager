@@ -4,7 +4,6 @@ import * as Yup from "yup";
 import { supabase } from "../../../helpers/supabaseClient";
 import Loader from "../../shared/Loader";
 import Alert from "../../shared/Alert";
-import { generateUUID } from "../../helpers/functions";
 const New = ({ setTransactions, transactions }) => {
 	const [loading, setLoading] = React.useState(false);
 	const [success, setSuccess] = React.useState(false);
@@ -231,25 +230,6 @@ const New = ({ setTransactions, transactions }) => {
 								</p>
 							) : null}
 						</div>
-						{/* 						<div>
-							<Field
-								as="select"
-								name="loan_application"
-								className={`outline-none py-2 px-5 w-full rounded-full my-3 placeholder-gray-500 border ${
-									errors.loan_application &&
-									touched.loan_application
-										? "border-red-500"
-										: "border-gray-500"
-								} bg-gray-300 focus:bg-white focus:text-blue-700 font-semibold`}>
-								<option value="">Loan Application</option>
-							</Field>
-							{errors.loan_applicatin &&
-							touched.loan_application ? (
-								<p className="px-4 text-red-500">
-									{errors.loan_applicatin}
-								</p>
-							) : null}
-						</div> */}
 						<button
 							className="bg-blue-700 rounded-full w-full text-white py-2 px-4 my-3 hover:bg-gray-600 font-semibold"
 							type="submit">

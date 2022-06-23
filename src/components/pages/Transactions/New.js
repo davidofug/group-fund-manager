@@ -4,14 +4,13 @@ import * as Yup from "yup";
 import { supabase } from "../../../helpers/supabaseClient";
 import Loader from "../../shared/Loader";
 import Alert from "../../shared/Alert";
+import { generateUUID } from "../../helpers/functions";
 const New = ({ setTransactions, transactions }) => {
 	const [loading, setLoading] = React.useState(false);
 	const [success, setSuccess] = React.useState(false);
 	const [errorMsg, setErrorMsg] = React.useState({});
 
 	React.useEffect(() => {
-		console.log("Re rendered");
-
 		return () => {
 			return false;
 		};
@@ -22,50 +21,50 @@ const New = ({ setTransactions, transactions }) => {
 		cause: "",
 		member: "",
 		amount: "",
-		charges: "",
-		notes: "",
+		charges: 0,
+		comments: "",
 		date: "",
-		loan_applicatin: "",
+		loan_applicatin: null,
 	};
 
 	const transactionSchema = Yup.object().shape({
 		category: Yup.string().required("Choose category"),
 		group: Yup.string().required("Choose group"),
-		cause: Yup.string().required("Choose cause"),
 		member: Yup.string().required("Choose member"),
-		amount: Yup.number().required("Amount required!"),
-		charges: Yup.number().required("Amount required!"),
-		notes: Yup.string().required("Notes required!"),
-		// date: Yup.string().required("Date required!"),
-		// loan_applicatin: Yup.string().required("Loan application required!"),
+		amount: Yup.number("Amount must be a number!").required(
+			"Amount required!"
+		),
+		charges: Yup.number("Charges has to be a number!"),
+		date: Yup.date("Check the date!"),
+		loan_applicatin: Yup.string(),
 	});
 
 	const submitTransaction = async (values, resetForm) => {
-		console.log("Form will submit");
 		setLoading(true);
-		setErrorMsg({});
+		setErrorMsg(null);
 		setSuccess(false);
 		const user = supabase.auth.user();
-		const { data: transaction, error } = supabase
+		const { data: transaction, error } = await supabase
 			.from("transactions")
 			.insert([
 				{
 					creator_id: user.id,
-					member_id: values.member,
-					group_id: values.group,
+					member_id: "c68cb3ab-ed6b-4a12-a212-46e566e8ddb8",
+					group_id: 39,
 					type: values.category,
 					amount: values.amount,
-					charges: values.charges,
-					purpose: values.notes,
+					purpose: "" || values.cause,
 					meta: {
 						date: values.date,
 						loan_applicatin: values.loan_applicatin,
+						charges: "" || values.charges,
+						comments: "" || values.notes,
 					},
 				},
 			])
 			.single();
-		console.error(error);
-		console.log(transaction);
+		// console.error(error);
+		// console.log(transaction);
 		if (transaction) {
 			setTransactions([transaction, ...transactions]);
 			setLoading(false);
@@ -73,6 +72,7 @@ const New = ({ setTransactions, transactions }) => {
 			resetForm();
 		} else {
 			setLoading(false);
+			console.log(error);
 			setErrorMsg({ msg: error.message });
 			setSuccess(false);
 		}
@@ -83,19 +83,20 @@ const New = ({ setTransactions, transactions }) => {
 
 	return (
 		<section className="bg-white p-5 md:border border-gray-300 md:rounded-md w-full items-center">
-			{loading && <Loader type="overlay" title="Adding Group" />}
+			{loading && <Loader type="overlay" title="Saving Transaction" />}
 			{success && (
 				<Alert
 					type="success"
 					float={true}
-					title="Group has been added"
-					message="Group added successfully!"
+					title="Process completed!"
+					message="Transaction added successfully!"
 					setStatus={setSuccess}
 					status={success}
 				/>
 			)}
-			{errorMsg?.msg && <Alert type="error" message={errorMsg?.msg} />}
-
+			{errorMsg?.msg && (
+				<Alert type="error" float={true} message={errorMsg?.msg} />
+			)}
 			<h1 className="font-bold text-xl text-center mb-2">
 				Add a Transaction
 			</h1>
@@ -104,11 +105,12 @@ const New = ({ setTransactions, transactions }) => {
 				validationSchema={transactionSchema}
 				onSubmit={(values, { resetForm }) => {
 					submitTransaction(values, resetForm);
-					console.log("Submitting");
-					console.log(values);
+					// console.log("Submitting");
+					// console.log(values);
 				}}>
 				{({ errors, touched }) => (
 					<Form>
+						{errors && JSON.stringify(errors, null, 2)}
 						<div>
 							<Field
 								type="text"

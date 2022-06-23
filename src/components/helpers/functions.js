@@ -32,4 +32,24 @@ const getBase64 = (file) => {
 	});
 };
 
-export { signOut, toggleDropdown, getBase64 };
+let generateRandomString = (len) => {
+	let randomString = "";
+
+	while (randomString.length < len) {
+		randomString += Math.random().toString(36).substring(2);
+	}
+
+	return randomString.substring(0, len);
+};
+
+let generateUUID = () => {
+	let first = generateRandomString(8);
+	let second = generateRandomString(4);
+	let third = generateRandomString(4);
+	let forth = generateRandomString(4);
+	let last = generateRandomString(12);
+
+	return `${first}-${second}-${third}-${forth}-${last}`;
+};
+
+export { signOut, toggleDropdown, getBase64, generateUUID };

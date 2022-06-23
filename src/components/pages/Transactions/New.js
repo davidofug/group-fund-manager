@@ -61,7 +61,6 @@ const New = ({ setTransactions, transactions, getTransactions }) => {
 			])
 			.single();
 		if (transaction) {
-			// setTransactions([transaction, ...transactions]);
 			getTransactions();
 			setLoading(false);
 			setSuccess(true);

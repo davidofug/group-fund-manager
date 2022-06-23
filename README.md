@@ -93,6 +93,7 @@ Allows administrators to keep and track financial records for small groups.
 2. Open an issue.
 3. Suggest features.
 4. Tell your friends about the app.
+5. Give us a Star.
 
 # Why should you Contribute?
 
@@ -101,6 +102,7 @@ Allows administrators to keep and track financial records for small groups.
 3. Build public atifacts that help you grow a reputation and career.
 4. Increase your Github commits.
 5. Add your voice to Open Source.
+6. To motivate the developers.
 
 ## Tech Stack
 

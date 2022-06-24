@@ -10,12 +10,15 @@ import EditGroup from "./Edit";
 import { supabase } from "../../../helpers/supabaseClient";
 import Modal from "../../shared/Modal";
 import NewGroup from "./New";
+import Loader from "../../shared/Loader";
+import { Ellipsis } from "../../shared/Preloaders/Loaders";
 const Index = () => {
 	const [error, setError] = React.useState({});
 	const [editing, setEditing] = React.useState(false);
 	const [groupToEdit, setGroupToEdit] = React.useState({});
 	const [groups, setGroups] = React.useState([]);
 	const [loading, setLoading] = React.useState(true);
+	const [deleting, setDeleting] = React.useState(0);
 	const getGroups = async () => {
 		try {
 			const { data: mygroups, error } = await supabase
@@ -65,7 +68,9 @@ const Index = () => {
 	};
 
 	const deleteGroup = async (group) => {
+		setDeleting(0);
 		try {
+			setDeleting(1);
 			const { data: deletedGroup, error } = await supabase
 				.from("groups")
 				.delete()
@@ -75,14 +80,16 @@ const Index = () => {
 					source: "supabase",
 					message: error.message,
 				});
-				setLoading(false);
+				setDeleting(0);
 				return false;
+			} else {
+				setDeleting(2);
+				getGroups();
 			}
-			setLoading(false);
-			setGroups(groups.filter((group) => group.id !== group));
+			setTimeout(() => setDeleting(0), 2000);
 		} catch (error) {
 			console.log(error);
-			setLoading(false);
+			setDeleting(0);
 			return false;
 		}
 		return false;
@@ -110,6 +117,19 @@ const Index = () => {
 					<NewGroup setGroups={setGroups} groups={groups} />
 				</aside>
 				<article className="col-span-9 bg-white border border-gray-300 rounded-md p-3">
+					{deleting === 1 && (
+						<div className="bg-blue-500 text-white rounded-md p-2">
+							<p className="flex">
+								Deleting <Ellipsis />
+							</p>
+						</div>
+					)}
+
+					{deleting === 2 && (
+						<div className="bg-green-600 text-white rounded-md p-2">
+							<p>Group deleted</p>
+						</div>
+					)}
 					<h1 className="text-xl font-bold">Groups</h1>
 					{loading ? (
 						<div className="min-h-full w-full flex flex-col justify-center items-center">
@@ -201,9 +221,16 @@ const Index = () => {
 																event
 															) => {
 																event.preventDefault();
-																deleteGroup(
-																	group?.id
-																);
+																const title = `Are you sure you want to delete group, \n${group.name}`;
+																if (
+																	window.confirm(
+																		title
+																	) === true
+																) {
+																	deleteGroup(
+																		group?.id
+																	);
+																}
 															}}>
 															<RiDeleteBin2Fill
 																title="Delete Group"

@@ -9,3 +9,7 @@ export const Ellipsis = () => {
 		</div>
 	);
 };
+
+export const MovingBalls = () => {
+	return <span class="loader-2"></span>;
+};

@@ -22,14 +22,14 @@ const Index = () => {
 	const [confirm, setConfirm] = React.useState(false);
 	const [message, setMessage] = React.useState("");
 	const [groupID, setGroupID] = React.useState(null);
+
 	const getGroups = async () => {
 		const user = supabase?.auth?.user();
 		const {
 			id: user_id,
 			user_metadata: { groups },
 		} = user;
-		const groupIds = groups.map((group) => group.id);
-		// console.log(groupIds);
+		// const groupIds =
 		try {
 			const { data: mygroups, error } = await supabase
 				.from("groups")
@@ -38,15 +38,13 @@ const Index = () => {
 			const { data: groupsIbelong } = await supabase
 				.from("groups")
 				.select()
-				.in("id", groupIds);
+				.in("id", new Set([...groups.map((group) => group.id)]));
+
 			const groupsFound = [...mygroups, ...groupsIbelong];
-			console.log(groupsFound);
 			const uniqueGroups = groupsFound.filter(
 				(group, index, self) =>
 					index === self.findIndex((t) => t.id === group.id)
 			);
-
-			console.log(uniqueGroups);
 
 			if (error) {
 				setError({
@@ -79,7 +77,6 @@ const Index = () => {
 				});
 			} else {
 				setGroupToEdit(editGroup);
-				// console.log(editGroup);
 			}
 		} catch (error) {
 			console.log(error);

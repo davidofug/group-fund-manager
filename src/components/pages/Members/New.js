@@ -457,17 +457,11 @@ const New = ({ setProfiles, profiles }) => {
 									</p>
 								) : null}
 							</div>
-							{/* 							{Object.keys(errorMsg).length || errors > 0 ? (
-								<span className="bg-blue-100 rounded-full w-full text-white py-1 px-3 my-3 border font-semibold">
-									Save Member
-								</span>
-							) : ( */}
 							<button
 								className="bg-blue-500 rounded-full w-full block text-white text-xl py-1 px-3 my-3 border hover:bg-white hover:border hover:border-blue-500 hover:text-blue-500 font-semibold"
 								type="submit">
 								Save Member
 							</button>
-							{/* )} */}
 						</Form>
 					)}
 				</Formik>

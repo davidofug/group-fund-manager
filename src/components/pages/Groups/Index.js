@@ -29,7 +29,7 @@ const Index = () => {
 			id: user_id,
 			user_metadata: { groups },
 		} = user;
-		// const groupIds =
+
 		try {
 			const { data: mygroups, error } = await supabase
 				.from("groups")

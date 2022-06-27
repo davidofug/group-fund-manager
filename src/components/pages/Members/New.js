@@ -15,11 +15,13 @@ const New = ({ setProfiles, profiles }) => {
 	const [errorMsg, setErrorMsg] = React.useState({});
 	const [file, setFile] = React.useState(null);
 	const avatarElement = React.useRef(null);
+
 	const getGroups = async () => {
 		try {
 			const { data: mygroups, error } = await supabase
 				.from("groups")
 				.select();
+
 			if (error) {
 				setError({
 					source: "supabase",
@@ -29,7 +31,12 @@ const New = ({ setProfiles, profiles }) => {
 				return false;
 			}
 			setLoading(false);
-			setGroups(mygroups);
+			const [role, userGroups] = currentUser();
+			if (![3, 4].includes(Number(role))) {
+				setGroups(userGroups);
+			} else {
+				setGroups(mygroups);
+			}
 		} catch (error) {
 			console.log(error);
 			setLoading(false);
@@ -151,6 +158,14 @@ const New = ({ setProfiles, profiles }) => {
 	React.useEffect(() => {
 		getGroups();
 	}, []);
+	const currentUser = () => {
+		const user = supabase.auth.user();
+		const {
+			user_metadata: { role, groups },
+		} = user;
+
+		return [role, groups];
+	};
 
 	return (
 		<>
@@ -427,8 +442,14 @@ const New = ({ setProfiles, profiles }) => {
 									<option value="-">- Select Role -</option>
 									<option value="1">Member</option>
 									<option value="2">Admin</option>
-									<option value="3">Super Admin</option>
-									<option value="3">Auditor</option>
+									{Number(currentUser()[0]) === 3 && (
+										<>
+											<option value="3">
+												Super Admin
+											</option>
+											<option value="3">Auditor</option>
+										</>
+									)}
 								</Field>
 								{errors.role && touched.role ? (
 									<p className="px-4 text-red-500">

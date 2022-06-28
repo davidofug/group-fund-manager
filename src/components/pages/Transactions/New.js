@@ -191,7 +191,6 @@ const New = ({ getTransactions }) => {
 									const groupMembers = await getGroupMembers(
 										event.target.value
 									);
-									console.log(groupMembers);
 									setGroupMembers(groupMembers);
 								}}
 								as="select"
@@ -232,7 +231,7 @@ const New = ({ getTransactions }) => {
 								</p>
 							) : null}
 						</div>
-						{groupMembers.length > 0 ? (
+						{groupMembers?.length > 0 ? (
 							<div>
 								<Field
 									as="select"

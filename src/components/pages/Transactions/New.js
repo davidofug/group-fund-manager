@@ -7,6 +7,7 @@ import Alert from "../../shared/Alert";
 import { useAuth } from "../../hooks/useAuth";
 const New = ({ getTransactions }) => {
 	const { user, setUser } = useAuth();
+	const [groupMembers, setGroupMembers] = React.useState([]);
 	const [loading, setLoading] = React.useState(false);
 	const [success, setSuccess] = React.useState(false);
 	const [errorMsg, setErrorMsg] = React.useState({});
@@ -79,24 +80,28 @@ const New = ({ getTransactions }) => {
 	};
 
 	const getGroupMembers = async (groupId) => {
-		console.log(groupId);
+		setGroupMembers([]);
 		try {
 			const { data: members, error } = await supabase
 				.from("profiles")
 				.select();
 
-			console.log(members);
-			const filteredMembers = members.map((member) => {
-				// console.log(member?.meta?.groups);
-
-				member?.meta?.groups.filter((group) => {
-					// group.id === groupId
-					// const mygroup = group.id == groupId;
-					console.log(group.id);
+			const filteredMembers = members
+				.map((member) =>
+					member?.meta?.groups.filter((group) => group.id == groupId)
+						?.length > 0
+						? member
+						: null
+				)
+				.filter((member) => {
+					if (member != null)
+						return {
+							user_id: member.user_id,
+							first_name: member.meta.first_name,
+							last_name: member.meta.last_name,
+						};
 				});
-			});
-
-			console.log(filteredMembers);
+			setGroupMembers(filteredMembers);
 		} catch (error) {
 			console.log(error);
 		}
@@ -230,29 +235,32 @@ const New = ({ getTransactions }) => {
 								</p>
 							) : null}
 						</div>
-						<div>
-							<Field
-								as="select"
-								name="member"
-								className={`outline-none py-2 px-5 w-full rounded-full my-3 placeholder-gray-500 border ${
-									errors.member && touched.member
-										? "border-red-500"
-										: "border-gray-500"
-								} bg-gray-300 focus:bg-white focus:text-blue-700 font-semibold`}>
-								<option value="">Member</option>
-								<option value="david">David</option>
-								<option value="kato">Kato</option>
-								<option value="withdrawal">Withdrawal</option>
-								<option value="disbursment">
-									Loan Disbursement
-								</option>
-							</Field>
-							{errors.member && touched.member ? (
-								<p className="px-4 text-red-500">
-									{errors.member}
-								</p>
-							) : null}
-						</div>
+						{groupMembers.length > 0 ? (
+							<div>
+								<Field
+									as="select"
+									name="member"
+									className={`outline-none py-2 px-5 w-full rounded-full my-3 placeholder-gray-500 border ${
+										errors.member && touched.member
+											? "border-red-500"
+											: "border-gray-500"
+									} bg-gray-300 focus:bg-white focus:text-blue-700 font-semibold`}>
+									<option value="">Member</option>
+									{groupMembers.map((member) => (
+										<option
+											key={member.user_id}
+											value={
+												member.user_id
+											}>{`${member.first_name} ${member.last_name}`}</option>
+									))}
+								</Field>
+								{errors.member && touched.member ? (
+									<p className="px-4 text-red-500">
+										{errors.member}
+									</p>
+								) : null}
+							</div>
+						) : null}
 						<button
 							className="bg-blue-700 rounded-full w-full text-white py-2 px-4 my-3 hover:bg-gray-600 font-semibold"
 							type="submit">

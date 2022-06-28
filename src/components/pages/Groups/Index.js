@@ -29,16 +29,16 @@ const Index = () => {
 			id: user_id,
 			user_metadata: { groups },
 		} = user;
-
 		try {
 			const { data: mygroups, error } = await supabase
 				.from("groups")
 				.select()
 				.or(`added_by.eq.${user_id},owner.eq.${user_id}`);
+
 			const { data: groupsIbelong } = await supabase
 				.from("groups")
 				.select()
-				.in("id", new Set([...groups.map((group) => group.id)]));
+				.in("id", [...new Set(groups.map((group) => group.id))]);
 
 			const groupsFound = [...mygroups, ...groupsIbelong];
 			const uniqueGroups = groupsFound.filter(
@@ -219,11 +219,15 @@ const Index = () => {
 													)}
 												</td>
 												<td className="relative border border-slate-300 p-2">
-													{group?.name}{" "}
-													{/* 													<IoAddCircle
-														title="Add Bank Account"
-														className="md:absolute md:z-2 md:top-1/3 md:-right-2 cursor-pointer text-green-600 hover:text-green-800"
-													/> */}
+													{group?.name}
+													<br />
+													<Link to="#">
+														Bank Accounts
+													</Link>{" "}
+													<Link to="#">
+														Internal Accounts
+													</Link>{" "}
+													<Link to="#">Causes</Link>
 												</td>
 												<td className="border border-slate-300 p-2">
 													{group?.purpose?.join(", ")}

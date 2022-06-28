@@ -4,7 +4,9 @@ import * as Yup from "yup";
 import { supabase } from "../../../helpers/supabaseClient";
 import Loader from "../../shared/Loader";
 import Alert from "../../shared/Alert";
+import { useAuth } from "../../hooks/useAuth";
 const New = ({ getTransactions }) => {
+	const { user, setUser } = useAuth();
 	const [loading, setLoading] = React.useState(false);
 	const [success, setSuccess] = React.useState(false);
 	const [errorMsg, setErrorMsg] = React.useState({});
@@ -16,7 +18,7 @@ const New = ({ getTransactions }) => {
 	}, []);
 	const initialValues = {
 		category: "",
-		group: "",
+		group: 0,
 		cause: "",
 		member: "",
 		amount: "",
@@ -74,6 +76,30 @@ const New = ({ getTransactions }) => {
 		setTimeout(() => {
 			setSuccess(false);
 		}, 6000);
+	};
+
+	const getGroupMembers = async (groupId) => {
+		console.log(groupId);
+		try {
+			const { data: members, error } = await supabase
+				.from("profiles")
+				.select();
+
+			console.log(members);
+			const filteredMembers = members.map((member) => {
+				// console.log(member?.meta?.groups);
+
+				member?.meta?.groups.filter((group) => {
+					// group.id === groupId
+					// const mygroup = group.id == groupId;
+					console.log(group.id);
+				});
+			});
+
+			console.log(filteredMembers);
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	return (
@@ -163,6 +189,9 @@ const New = ({ getTransactions }) => {
 						</div>
 						<div>
 							<Field
+								onChange={(event) =>
+									getGroupMembers(event.target.value)
+								}
 								as="select"
 								name="group"
 								className={`outline-none py-2 px-5 w-full rounded-full my-3 placeholder-gray-500 border ${
@@ -171,15 +200,11 @@ const New = ({ getTransactions }) => {
 										: "border-gray-500"
 								} bg-gray-300 focus:bg-white focus:text-blue-700 font-semibold`}>
 								<option value="">- Choose group -</option>
-								<option value="Ablestate Providence">
-									Ablestate Providence
-								</option>
-								<option value="Brotherhood Finance">
-									Brotherhood Finance
-								</option>
-								<option value="RPM Wealthy Ladies">
-									RPM Wealthy Ladies
-								</option>
+								{user?.user_metadata?.groups?.map((group) => (
+									<option key={group.id} value={group.id}>
+										{group.name}
+									</option>
+								))}
 							</Field>
 							{errors.group && touched.group ? (
 								<p className="px-4 text-red-500">

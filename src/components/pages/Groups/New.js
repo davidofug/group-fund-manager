@@ -223,6 +223,17 @@ const NewGroup = ({ setGroups, groups }) => {
 							<div>
 								<Field
 									name="purpose"
+									id="pledge"
+									value="Contributions"
+									type="checkbox"
+								/>
+								<label htmlFor="pledge" className="ml-1">
+									Contributions
+								</label>
+							</div>
+							<div>
+								<Field
+									name="purpose"
 									id="saving_deposit"
 									value="Member Saving/Deposit"
 									type="checkbox"

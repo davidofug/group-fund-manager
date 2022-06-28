@@ -80,7 +80,6 @@ const New = ({ getTransactions }) => {
 	};
 
 	const getGroupMembers = async (groupId) => {
-		setGroupMembers([]);
 		try {
 			const { data: members, error } = await supabase
 				.from("profiles")
@@ -101,7 +100,7 @@ const New = ({ getTransactions }) => {
 							last_name: member.meta.last_name,
 						};
 				});
-			setGroupMembers(filteredMembers);
+			return filteredMembers;
 		} catch (error) {
 			console.log(error);
 		}
@@ -194,9 +193,14 @@ const New = ({ getTransactions }) => {
 						</div>
 						<div>
 							<Field
-								onChange={(event) =>
-									getGroupMembers(event.target.value)
-								}
+								onChange={async (event) => {
+									setGroupMembers([]);
+									const groupMembers = await getGroupMembers(
+										event.target.value
+									);
+									console.log(groupMembers);
+									setGroupMembers(groupMembers);
+								}}
 								as="select"
 								name="group"
 								className={`outline-none py-2 px-5 w-full rounded-full my-3 placeholder-gray-500 border ${

@@ -8,6 +8,7 @@ import { useAuth } from "../../hooks/useAuth";
 const New = ({ getTransactions }) => {
 	const { user, setUser } = useAuth();
 	const [groupMembers, setGroupMembers] = React.useState([]);
+	const [causes, setCauses] = React.useState([]);
 	const [loading, setLoading] = React.useState(false);
 	const [success, setSuccess] = React.useState(false);
 	const [errorMsg, setErrorMsg] = React.useState({});
@@ -99,6 +100,27 @@ const New = ({ getTransactions }) => {
 		}
 	};
 
+	const getGroupMeta = async (groupId, field) => {
+		// if (!groupId) return false;
+		// if (!field) return false;
+		console.log(groupId, field);
+
+		try {
+			const { data: meta, error } = await supabase
+				.from("group_meta")
+				.select()
+				.match({ group_id: groupId, key: field });
+			if (error) {
+				console.log(error);
+				return false;
+			}
+
+			return meta;
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	return (
 		<section className="bg-white p-5 md:border border-gray-300 md:rounded-md w-full items-center">
 			{loading && <Loader type="overlay" title="Saving Transaction" />}
@@ -146,7 +168,7 @@ const New = ({ getTransactions }) => {
 						</div>
 						<div>
 							<Field
-								type="text"
+								type="date"
 								name="date"
 								className={`outline-none py-2 px-5 w-full rounded-full my-3 placeholder-gray-500 border ${
 									errors.date && touched.date
@@ -171,12 +193,18 @@ const New = ({ getTransactions }) => {
 										: "border-gray-500"
 								} bg-gray-300 focus:bg-white focus:text-blue-700 font-semibold w-50`}>
 								<option value="">Choose category</option>
-								<option value="pledge">Pledge</option>
-								<option value="deposit">Deposit</option>
-								<option value="withdrawal">Withdrawal</option>
+								<option value="deposit">Saving Deposit</option>
+								<option value="contribution">
+									Contribution
+								</option>
+								<option value="withdrawal">Withdraw</option>
 								<option value="disbursment">
 									Loan Disbursement
 								</option>
+								<option value="repayment">
+									Loan Repayment
+								</option>
+								<option value="investment">Investment</option>
 							</Field>
 							{errors.category && touched.category ? (
 								<p className="px-4 text-red-500">
@@ -187,11 +215,17 @@ const New = ({ getTransactions }) => {
 						<div>
 							<Field
 								onChange={async (event) => {
+									const { value: groupId } = event.target;
 									setGroupMembers([]);
 									const groupMembers = await getGroupMembers(
-										event.target.value
+										groupId
 									);
 									setGroupMembers(groupMembers);
+									const causes = await getGroupMeta(
+										groupId,
+										"causes"
+									);
+									setCauses(causes);
 								}}
 								as="select"
 								name="group"
@@ -213,24 +247,30 @@ const New = ({ getTransactions }) => {
 								</p>
 							) : null}
 						</div>
-						<div>
-							<Field
-								as="select"
-								name="cause"
-								className={`outline-none py-2 px-5 w-full rounded-full my-3 placeholder-gray-500 border ${
-									errors.cause && touched.cause
-										? "border-red-500"
-										: "border-gray-500"
-								} bg-gray-300 focus:bg-white focus:text-blue-700 font-semibold`}>
-								<option value="">- Choose Cause -</option>
-								<option value="Church land">Church land</option>
-							</Field>
-							{errors.cause && touched.cause ? (
-								<p className="px-4 text-red-500">
-									{errors.cause}
-								</p>
-							) : null}
-						</div>
+						{causes?.length > 0 && (
+							<div>
+								<Field
+									as="select"
+									name="cause"
+									className={`outline-none py-2 px-5 w-full rounded-full my-3 placeholder-gray-500 border ${
+										errors.cause && touched.cause
+											? "border-red-500"
+											: "border-gray-500"
+									} bg-gray-300 focus:bg-white focus:text-blue-700 font-semibold`}>
+									<option value="">- Choose Cause -</option>
+									{causes.map((cause) => (
+										<option key={cause} value={cause}>
+											{cause}
+										</option>
+									))}
+								</Field>
+								{errors.cause && touched.cause ? (
+									<p className="px-4 text-red-500">
+										{errors.cause}
+									</p>
+								) : null}
+							</div>
+						)}
 						{groupMembers?.length > 0 ? (
 							<div>
 								<Field

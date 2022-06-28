@@ -92,14 +92,7 @@ const New = ({ getTransactions }) => {
 						? member
 						: null
 				)
-				.filter((member) => {
-					if (member != null)
-						return {
-							user_id: member.user_id,
-							first_name: member.meta.first_name,
-							last_name: member.meta.last_name,
-						};
-				});
+				.filter((member) => member != null);
 			return filteredMembers;
 		} catch (error) {
 			console.log(error);
@@ -253,9 +246,10 @@ const New = ({ getTransactions }) => {
 									{groupMembers.map((member) => (
 										<option
 											key={member.user_id}
-											value={
-												member.user_id
-											}>{`${member.first_name} ${member.last_name}`}</option>
+											value={member.user_id}>
+											{member.meta.first_name}{" "}
+											{member.meta.last_name}
+										</option>
 									))}
 								</Field>
 								{errors.member && touched.member ? (

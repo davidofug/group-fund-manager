@@ -2,12 +2,17 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { FiChevronDown } from "react-icons/fi";
+import {
+	BsFillArrowLeftCircleFill,
+	BsFillArrowRightCircleFill,
+} from "react-icons/bs";
 import PrivateNav from "../shared/PrivateNav";
 import profilephoto from "../../assets/images/member.jpg";
 import { supabase } from "../../helpers/supabaseClient";
 import NotAuthorized from "../helpers/NotAuthorized";
 const Auth = ({ children }) => {
 	const { user, setUser } = useAuth();
+	const [leftSidebar, setLeftSidebar] = React.useState(true);
 	const [menu, setMenu] = React.useState(false);
 
 	// const [notAuthorized] = useOutletContext();
@@ -18,14 +23,27 @@ const Auth = ({ children }) => {
 	const switchMenu = () => {
 		setMenu(!menu);
 	};
+	const switchLeftSidebar = () => {
+		setLeftSidebar(!leftSidebar);
+	};
 	const navigate = useNavigate();
 	// if (notAuthorized) {
 	// }
 
 	return (
-		<section className="grid grid-cols-12">
-			<PrivateNav />
-			<main className="col-span-10 bg-gray-100 p-3">
+		<section className={`${leftSidebar && "grid grid-cols-12"}`}>
+			{leftSidebar && <PrivateNav setBarStatus={switchLeftSidebar} />}
+
+			<main className="col-span-10 bg-gray-100 p-3 relative">
+				<button
+					onClick={switchLeftSidebar}
+					className="text-gray-600 w-16 height-16 rounded-full">
+					{leftSidebar ? (
+						<BsFillArrowLeftCircleFill size={24} />
+					) : (
+						<BsFillArrowRightCircleFill size={24} />
+					)}
+				</button>
 				<section className="grid justify-end mb-4">
 					<button
 						className="flex justify-end items-center cursor-pointer"

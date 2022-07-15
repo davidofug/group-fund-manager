@@ -100,6 +100,26 @@ const New = ({ getTransactions }) => {
 		}
 	};
 
+	const retreiveGroupMembers = async (groupId) => {
+		try {
+			const { data: members, error } = await supabase.rpc(
+				"get_group_members",
+				{
+					groupid: groupId,
+					_from: 0,
+					_count: 100,
+				}
+			);
+			if (!error) {
+				return members;
+			}
+			console.log(error);
+		} catch (error) {
+			console.log(error);
+		}
+		return false;
+	};
+
 	const getGroupMeta = async (groupId, field) => {
 		// if (!groupId) return false;
 		// if (!field) return false;
@@ -217,15 +237,14 @@ const New = ({ getTransactions }) => {
 								onChange={async (event) => {
 									const { value: groupId } = event.target;
 									setGroupMembers([]);
-									const groupMembers = await getGroupMembers(
-										groupId
-									);
+									const groupMembers =
+										await retreiveGroupMembers(groupId);
 									setGroupMembers(groupMembers);
-									const causes = await getGroupMeta(
+									/* 									const causes = await getGroupMeta(
 										groupId,
 										"causes"
 									);
-									setCauses(causes);
+									setCauses(causes); */
 								}}
 								as="select"
 								name="group"
@@ -286,8 +305,8 @@ const New = ({ getTransactions }) => {
 										<option
 											key={member.user_id}
 											value={member.user_id}>
-											{member.meta.first_name}{" "}
-											{member.meta.last_name}
+											{member.first_name}{" "}
+											{member.last_name}
 										</option>
 									))}
 								</Field>
